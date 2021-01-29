@@ -6,8 +6,6 @@ const router = require('./router/admin')
 require('./database/init')
 require('./database/models/Admin')
 
-app.use(express.urlencoded({extended: false}))
-
 
 app.use('*', function (req, res, next) {
     // 设置请求头为允许跨域
@@ -21,6 +19,7 @@ app.use('*', function (req, res, next) {
 });
 // 处理json格式的参数
 app.use(bodyParser.json())
+app.use(express.urlencoded({extended: false}))
 
 
 app.use(router)
