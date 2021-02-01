@@ -10,7 +10,7 @@ router.get('/test',function (req,res) {
 })
 
 
-//登录
+//admin登录
 router.post('/adminlogin',function (req,res){
         /*
         * 管理员账号密码（唯一）：

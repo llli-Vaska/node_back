@@ -5,7 +5,7 @@ const bodyParser = require('body-parser')
 const router = require('./router/admin')
 require('./database/init')
 require('./database/models/Admin')
-
+require('./database/models/Student')
 
 app.use('*', function (req, res, next) {
     // 设置请求头为允许跨域
@@ -23,5 +23,4 @@ app.use(express.urlencoded({extended: false}))
 
 
 app.use(router)
-// app.use('/admin',router)
 app.listen(port, () => console.log(` listening ${port}......`))
