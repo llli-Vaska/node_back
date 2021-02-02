@@ -2,7 +2,9 @@ const express = require('express')
 const app = express()
 const port = 3000
 const bodyParser = require('body-parser')
+//接口
 const router = require('./router/admin')
+
 require('./database/init')
 require('./database/models/Admin')
 require('./database/models/Student')
@@ -20,7 +22,6 @@ app.use('*', function (req, res, next) {
 // 处理json格式的参数
 app.use(bodyParser.json())
 app.use(express.urlencoded({extended: false}))
-
 
 app.use(router)
 app.listen(port, () => console.log(` listening ${port}......`))

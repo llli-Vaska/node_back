@@ -1,6 +1,9 @@
 const express = require('express')
 const router = express.Router()
+//admin表
 const Admin = require('../database/models/Admin')
+//student表
+const Student = require('../database/models/Student')
 const jwt = require('jsonwebtoken')
 //测试
 router.get('/test',function (req,res) {
@@ -55,6 +58,27 @@ router.post('/adminlogin',function (req,res){
 
     }
 )
+
+//学生用户
+router.post('/student', function (req, res) {
+    Student.findStudent({
+        attachment:['number','name','sex','phone','password','department','major']
+    }).then(result => {
+        // console.log(result)
+        res.send(result)
+    })
+})
+
+//admin添加学生用户
+router.post('/addstudent', function (req, res) {
+    console.log(req.body)
+    Student.Studentcreate(req.body.number,req.body.name,req.body.sex,req.body.phone,req.body.password,req.body.department,req.body.major).then(res => {
+        console.log(res)
+    }).catch(err => {
+        console.log(err)
+    })
+
+})
 
 
 module.exports = router

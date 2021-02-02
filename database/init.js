@@ -5,7 +5,11 @@ const sequelize = new Sequelize('test','root','root', {
     port: '3306',
     dialect: 'mysql',
     define: {
-        timestamps: false
+        timestamps: false,
+        charset:'utf8',
+        dialectOptions:{
+            collate: 'utf8_general_ci'
+        }
     }
 
 })

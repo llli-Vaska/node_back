@@ -64,8 +64,34 @@ const Student = sequelize.define('student', {
             notEmpty: true
         }
     },
+    studenttoken: {
+        type: Sequelize.STRING,
+        notEmpty: false,
+        validateL: {
+            notEmpty: false
+        }
+    }
 
 })
+exports.Studentcreate = function (number,name,sex,phone,password,department,major) {
+    return Student.create({
+        number: number,
+        name: name,
+        sex:sex,
+        phone: phone,
+        password: password,
+        department: department,
+        major: major
+
+    })
+}
+
+
+//查询student表
+exports.findStudent = function () {
+    return Student.findAll({raw: true})
+}
+
 Student.sync().then(() => {
     console.log('student表模型已经同步')
 })
