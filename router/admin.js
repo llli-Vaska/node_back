@@ -64,7 +64,7 @@ router.post('/student', function (req, res) {
     Student.findStudent({
         attachment:['number','name','sex','phone','password','department','major']
     }).then(result => {
-        // console.log(result)
+        console.log(result)
         res.send(result)
     })
 })
@@ -79,6 +79,8 @@ router.post('/addstudent', function (req, res) {
     })
 
 })
+
+
 
 
 module.exports = router

@@ -73,6 +73,8 @@ const Student = sequelize.define('student', {
     }
 
 })
+
+//添加用户
 exports.Studentcreate = function (number,name,sex,phone,password,department,major) {
     return Student.create({
         number: number,
@@ -85,7 +87,6 @@ exports.Studentcreate = function (number,name,sex,phone,password,department,majo
 
     })
 }
-
 
 //查询student表
 exports.findStudent = function () {
