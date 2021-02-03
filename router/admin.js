@@ -94,5 +94,14 @@ router.post('/deletestudent', function (req,res) {
     })
 })
 
+//admin编辑修改学生信息
+router.post('/editstudent', function (req,res) {
+    console.log(req.body)
+    Student.Studentupdate(req.body.id,req.body.number,req.body.name,req.body.sex,req.body.phone,req.body.password,req.body.department,req.body.major)
+    res.send({
+        msg:'编辑成功',
+        code: 0
+    })
+})
 
 module.exports = router

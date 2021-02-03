@@ -107,6 +107,21 @@ exports.findStudent = function () {
     return Student.findAll({raw: true})
 }
 
+//修改student表
+exports.Studentupdate = function (id,number,name,sex,phone,password,department,major) {
+    return Student.update({
+        number: number,
+        name: name,
+        sex:sex,
+        phone: phone,
+        password: password,
+        department: department,
+        major: major
+    },{
+        'where': {'id' : id }
+    })
+}
+
 Student.sync().then(() => {
     console.log('student表模型已经同步')
 })
