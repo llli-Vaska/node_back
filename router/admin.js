@@ -77,13 +77,17 @@ router.post('/addstudent', function (req, res) {
     }).catch(err => {
         console.log(err)
     })
+    res.send({
+        msg:'添加成功',
+        code: 0
+    })
 
 })
 
 //admin删除单挑学生用户信息
 router.post('/deletestudent', function (req,res) {
     console.log(req.body)
-    Student.StudentDelete(req.body.number,req.body.name)
+    Student.StudentDelete(req.body.number,req.body.name,req.body.sex,req.body.phone,req.body.password,req.body.department,req.body.major)
     res.send({
         msg:'删除成功',
         code: 0

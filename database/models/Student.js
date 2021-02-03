@@ -74,11 +74,16 @@ const Student = sequelize.define('student', {
 
 })
 //单条删除
-exports.StudentDelete = function (number,name) {
+exports.StudentDelete = function (number,name,sex,phone,password,department,major) {
     return Student.destroy({
         where :{
             number: number,
-            name: name
+            name: name,
+            sex:sex,
+            phone: phone,
+            password: password,
+            department: department,
+            major: major
         }
     })
 }
