@@ -59,19 +59,13 @@ router.post('/adminlogin',function (req,res){
     }
 )
 
-//学生用户
+//学生用户表单分页查询
 router.post('/student', function (req, res) {
     Student.findStudent(req.body.offset,req.body.limit).then(result => {
         // console.log(result)
         res.send(result)
     })
 
-    // Student.findStudent({
-    //     attachment:['number','name','sex','phone','password','department','major']
-    // }).then(result => {
-    //     // console.log(result)
-    //     res.send(result)
-    // })
 })
 
 //admin添加学生用户
@@ -109,7 +103,7 @@ router.post('/editstudent', function (req,res) {
     })
 })
 
-//student 分页
+//查询student 表
 router.post('/studentall',function (req,res) {
     console.log(req.body)
     Student.findStudentall({
