@@ -73,6 +73,15 @@ const Student = sequelize.define('student', {
     }
 
 })
+//单条删除
+exports.StudentDelete = function (number,name) {
+    return Student.destroy({
+        where :{
+            number: number,
+            name: name
+        }
+    })
+}
 
 //添加用户
 exports.Studentcreate = function (number,name,sex,phone,password,department,major) {

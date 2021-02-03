@@ -80,7 +80,15 @@ router.post('/addstudent', function (req, res) {
 
 })
 
-
+//admin删除单挑学生用户信息
+router.post('/deletestudent', function (req,res) {
+    console.log(req.body)
+    Student.StudentDelete(req.body.number,req.body.name)
+    res.send({
+        msg:'删除成功',
+        code: 0
+    })
+})
 
 
 module.exports = router
