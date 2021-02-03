@@ -61,12 +61,17 @@ router.post('/adminlogin',function (req,res){
 
 //学生用户
 router.post('/student', function (req, res) {
-    Student.findStudent({
-        attachment:['number','name','sex','phone','password','department','major']
-    }).then(result => {
-        console.log(result)
+    Student.findStudent(req.body.offset,req.body.limit).then(result => {
+        // console.log(result)
         res.send(result)
     })
+
+    // Student.findStudent({
+    //     attachment:['number','name','sex','phone','password','department','major']
+    // }).then(result => {
+    //     // console.log(result)
+    //     res.send(result)
+    // })
 })
 
 //admin添加学生用户
@@ -86,7 +91,7 @@ router.post('/addstudent', function (req, res) {
 
 //admin删除单挑学生用户信息
 router.post('/deletestudent', function (req,res) {
-    console.log(req.body)
+    // console.log(req.body)
     Student.StudentDelete(req.body.number,req.body.name,req.body.sex,req.body.phone,req.body.password,req.body.department,req.body.major)
     res.send({
         msg:'删除成功',
@@ -96,11 +101,22 @@ router.post('/deletestudent', function (req,res) {
 
 //admin编辑修改学生信息
 router.post('/editstudent', function (req,res) {
-    console.log(req.body)
+    // console.log(req.body)
     Student.Studentupdate(req.body.id,req.body.number,req.body.name,req.body.sex,req.body.phone,req.body.password,req.body.department,req.body.major)
     res.send({
         msg:'编辑成功',
         code: 0
+    })
+})
+
+//student 分页
+router.post('/studentall',function (req,res) {
+    console.log(req.body)
+    Student.findStudentall({
+        attachment:['number','name','sex','phone','password','department','major']
+    }).then(result => {
+        // console.log(result)
+        res.send(result)
     })
 })
 

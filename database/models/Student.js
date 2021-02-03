@@ -102,9 +102,20 @@ exports.Studentcreate = function (number,name,sex,phone,password,department,majo
     })
 }
 
-//查询student表
-exports.findStudent = function () {
-    return Student.findAll({raw: true})
+//查询student表 all
+exports.findStudentall = function () {
+    return Student.findAll({
+        raw: true,
+    })
+}
+
+//查询student表 (offset limit)
+exports.findStudent = function (offset,limit) {
+    return Student.findAll({
+        raw: true,
+        offset: offset,
+        limit: limit
+    })
 }
 
 //修改student表
@@ -121,6 +132,15 @@ exports.Studentupdate = function (id,number,name,sex,phone,password,department,m
         'where': {'id' : id }
     })
 }
+
+// 分页  跳过指定数量信息 限制数量提取信息
+exports.StudentPage = function (offset, limit) {
+    return Student.findAll({
+        offset: offset,
+        limit: limit
+    })
+}
+
 
 Student.sync().then(() => {
     console.log('student表模型已经同步')
