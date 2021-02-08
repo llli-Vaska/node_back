@@ -28,7 +28,7 @@ const Position =  sequelize.define('position', {
     },
     // 公司补贴，福利
     Welfare: {
-        type: Sequelize.STRING,
+        type: Sequelize.TEXT,
         notEmpty: true,
         validateL: {
             notEmpty: true
@@ -42,17 +42,9 @@ const Position =  sequelize.define('position', {
             notEmpty: true
         }
     },
-    // 岗位职责
+    // 岗位职责 // 任职要求
     Duty: {
-        type: Sequelize.STRING,
-        notEmpty: true,
-        validateL: {
-            notEmpty: true
-        }
-    },
-    // 任职要求
-    Requirement: {
-        type: Sequelize.STRING,
+        type: Sequelize.TEXT,
         notEmpty: true,
         validateL: {
             notEmpty: true
