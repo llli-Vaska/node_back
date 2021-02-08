@@ -4,13 +4,21 @@ const router = express.Router()
 const Admin = require('../database/models/Admin')
 //student表
 const Student = require('../database/models/Student')
+//position表
+const Position = require('../database/models/Position')
 const jwt = require('jsonwebtoken')
 //测试
-router.get('/test',function (req,res) {
-    res.send({
-        msg:'123'
+router.get('/position',function (req,res) {
+    Position.findPositionall({
+        attachment:['TitlePosition','Degree','Salary','Welfare','Technology','Duty','Requirement','Region','Number']
+    }).then(result => {
+        res.send(result)
     })
 })
+
+
+
+
 
 
 //admin登录
