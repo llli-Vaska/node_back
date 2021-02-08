@@ -6,9 +6,11 @@ const Admin = require('../database/models/Admin')
 const Student = require('../database/models/Student')
 //position表
 const Position = require('../database/models/Position')
+//company表
+const Company = require('../database/models/Company')
 const jwt = require('jsonwebtoken')
 //测试
-router.get('/position',function (req,res) {
+router.post('/position',function (req,res) {
     Position.findPositionall({
         attachment:['TitlePosition','Degree','Salary','Welfare','Technology','Duty','Requirement','Region','Number']
     }).then(result => {

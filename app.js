@@ -9,6 +9,7 @@ require('./database/init')
 require('./database/models/Admin')
 require('./database/models/Student')
 require('./database/models/Position')
+require('./database/models/Company')
 
 app.use('*', function (req, res, next) {
     // 设置请求头为允许跨域
