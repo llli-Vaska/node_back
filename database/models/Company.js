@@ -145,8 +145,12 @@ const Company =  sequelize.define('company', {
         }
     },
 })
-
-
+//查询company表
+exports.findCompanyall = function () {
+    return Company.findAll({
+        raw: true,
+    })
+}
 
 
 Company.sync().then(() => {

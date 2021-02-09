@@ -9,7 +9,7 @@ const Position = require('../database/models/Position')
 //company表
 const Company = require('../database/models/Company')
 const jwt = require('jsonwebtoken')
-//测试
+//职位表
 router.post('/position',function (req,res) {
     Position.findPositionall({
         attachment:['TitlePosition','Degree','Salary','Welfare','Technology','Duty','Requirement','Region','Number']
@@ -18,7 +18,15 @@ router.post('/position',function (req,res) {
     })
 })
 
-
+//公司表
+router.post('/company', function (req,res) {
+    Company.findCompanyall({
+        attachment:['Icon','CompanyName','Sculpture','CompanyPerson','UserName','UserPassword','Introduce','CompanyAddress','CompanyType','Range','RegisteredAddress','Condition','Time','Capital','Website']
+    }).then(result => {
+        res.send(result)
+        // console.log(result)
+    })
+})
 
 
 
