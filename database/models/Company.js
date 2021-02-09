@@ -64,7 +64,7 @@ const Company =  sequelize.define('company', {
             notEmpty: true
         }
     },
-    //公司介绍
+    //公司介绍 text
     Introduce: {
         type: Sequelize.TEXT,
         notEmpty: true,
@@ -88,7 +88,7 @@ const Company =  sequelize.define('company', {
             notEmpty: true
         }
     },
-    //经营范围
+    //经营范围text
     Range: {
         type: Sequelize.TEXT,
         notEmpty: true,
@@ -130,7 +130,7 @@ const Company =  sequelize.define('company', {
     },
     //公司网站
     Website: {
-        type: Sequelize.TEXT,
+        type: Sequelize.STRING,
         notEmpty: true,
         validateL: {
             notEmpty: true
@@ -157,6 +157,30 @@ exports.findCompany = function (offset,limit) {
         raw: true,
         offset: offset,
         limit: limit
+    })
+}
+
+
+//单条删除
+exports.CompanyDelete = function (Icon,CompanyName,Sculpture,CompanyPerson,UserName,UserPassword,CompanyAddress,CompanyType,RegisteredAddress,Condition,Time,Capital,Website) {
+    return Company.destroy({
+        where :{
+            Icon: Icon, //公司图标
+            CompanyName: CompanyName, //公司名
+            Sculpture: Sculpture, //法人代表头像
+            CompanyPerson: CompanyPerson, //法人代表
+            UserName: UserName, //账号
+            UserPassword: UserPassword, //密码
+            // Introduce: Introduce, //公司介绍
+            CompanyAddress: CompanyAddress, //公司地址
+            CompanyType: CompanyType, //公司类型
+            // Range: Range, //经营范围
+            RegisteredAddress: RegisteredAddress, //注册地址
+            Condition: Condition, //经营状态
+            Time: Time, //成立时间
+            Capital: Capital, //注册资本
+            Website:Website, //公司网站
+        }
     })
 }
 

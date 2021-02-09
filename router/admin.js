@@ -119,10 +119,24 @@ router.post('/deletestudent', function (req,res) {
     })
 })
 
+//admin删除单挑公司信息
+router.post('/deletecompany', function (req,res) {
+
+    Company.CompanyDelete(req.body.Icon,req.body.CompanyName,req.body.Sculpture,req.body.CompanyPerson,req.body.UserName,req.body.UserPassword,req.body.CompanyAddress,req.body.CompanyType,req.body.RegisteredAddress,req.body.Condition,req.body.Time,req.body.Capital,req.body.Website).then(() => {
+        console.log(req.body)
+        res.send({
+            msg:'删除成功',
+            code: 0
+        })
+    })
+
+
+})
+
 //admin编辑修改学生信息
 router.post('/editstudent', function (req,res) {
     // console.log(req.body)
-    Student.Studentupdate(req.body.id,req.body.number,req.body.name,req.body.sex,req.body.phone,req.body.password,req.body.department,req.body.major)
+    Student.Studentupdate(req.body.number,req.body.name,req.body.sex,req.body.phone,req.body.password,req.body.department,req.body.major)
     res.send({
         msg:'编辑成功',
         code: 0
