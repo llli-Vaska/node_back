@@ -83,6 +83,14 @@ router.post('/student', function (req, res) {
         // console.log(result)
         res.send(result)
     })
+})
+
+//公司表单分页查询
+router.post('/companypage', function (req, res) {
+    Company.findCompany(req.body.offset,req.body.limit).then(result => {
+        // console.log(result)
+        res.send(result)
+    })
 
 })
 

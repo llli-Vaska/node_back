@@ -151,6 +151,14 @@ exports.findCompanyall = function () {
         raw: true,
     })
 }
+//查询company表 (offset limit)
+exports.findCompany = function (offset,limit) {
+    return Company.findAll({
+        raw: true,
+        offset: offset,
+        limit: limit
+    })
+}
 
 
 Company.sync().then(() => {
