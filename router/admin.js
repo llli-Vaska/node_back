@@ -1,5 +1,6 @@
 const express = require('express')
 const router = express.Router()
+const fs = require('fs')
 //admin表
 const Admin = require('../database/models/Admin')
 //student表
@@ -9,6 +10,59 @@ const Position = require('../database/models/Position')
 //company表
 const Company = require('../database/models/Company')
 const jwt = require('jsonwebtoken')
+
+
+const multer  = require('multer')
+//对上传的文件进行配置
+// 配置磁盘引擎
+let storage = multer.diskStorage({
+    destination: function(req, file, cb) {
+        //    指定文件存放路径
+        cb(null, "./public/img")
+    },
+    filename: function(req, file, cb) {
+        // 指定文件名,先获取扩展,随机生成文件名保存给保存文件的方法
+        //获取文件扩展名
+        let exts = file.originalname.split(".")
+        let ext = exts[exts.length - 1] //为了防止上传图片时,图片的名称中含多个点,从后面取最后一个解决问题
+        let tmpname = Date.now() + parseInt(Math.random() * 9999) //时间戳+随机数生成文件名
+        cb(null, `${tmpname}.${ext}`)
+    }
+})
+// 使用磁盘引擎的配置调用方法
+let upload = multer({ storage: storage })
+// 上传文件路由,使用single 方法接收前端 图片的name属性是'logo'的图片,保存到req.file
+router.post("/upload", upload.single('fr'), (req, res) => {
+    // console.log(req.file)
+    // console.log(req)
+    let name = req.file.filename
+    //上传完图片,拼接返回前端图片的查看地址(静态托管的url要设置成这个)
+    let imgUrl = 'http://p373196l49.wicp.vip/'+`img/${name}`
+    res.send({ err: 0, msg: "ok", imgUrl, name})
+})
+
+
+//删除本地图片文件
+router.post('/deletepicture', function (req,res) {
+    let name = req.body.response.name
+    console.log(req.body.response.name)
+    // fs.unlinkSync('./public/img/'+name)
+    fs.unlink('./public/img/'+name, function (err) {
+        if (err) {
+            console.log(err)
+        }else {
+            console.log('删除成功')
+        }
+
+    })
+})
+
+
+
+
+
+
+
 //职位表
 router.post('/position',function (req,res) {
     Position.findPositionall({
