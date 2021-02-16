@@ -45,8 +45,7 @@ router.post("/upload", upload.single('fr'), (req, res) => {
 //删除本地图片文件
 router.post('/deletepicture', function (req,res) {
     let name = req.body.response.name
-    console.log(req.body.response.name)
-    // fs.unlinkSync('./public/img/'+name)
+    // console.log(req.body.response.name)
     fs.unlink('./public/img/'+name, function (err) {
         if (err) {
             console.log(err)
@@ -57,13 +56,7 @@ router.post('/deletepicture', function (req,res) {
     })
 })
 
-
-
-
-
-
-
-//职位表
+//职位表（只有少量数据）
 router.post('/position',function (req,res) {
     Position.findPositionall({
         attachment:['TitlePosition','Degree','Salary','Welfare','Technology','Duty','Requirement','Region','Number']
@@ -81,9 +74,6 @@ router.post('/company', function (req,res) {
         // console.log(result)
     })
 })
-
-
-
 
 //admin登录
 router.post('/adminlogin',function (req,res){
@@ -118,16 +108,11 @@ router.post('/adminlogin',function (req,res){
                 }
                 res.send({code:0,msg:'管理员登录成功',username: adminname,token})
                 console.log('管理员登录成功')
-               
-
             } else{
                 res.send({code:-1,msg:'管理员登录失败'})
                 console.log('管理员登录失败')
             }
-
         })
-
-
     }
 )
 
@@ -176,9 +161,6 @@ router.post('/addcompany', function (req, res) {
     })
 })
 
-
-
-
 //admin删除单挑学生用户信息
 router.post('/deletestudent', function (req,res) {
     // console.log(req.body)
@@ -200,13 +182,21 @@ router.post('/deletecompany', function (req,res) {
         })
     })
 
-
 })
 
 //admin编辑修改学生信息
 router.post('/editstudent', function (req,res) {
     // console.log(req.body)
     Student.Studentupdate(req.body.number,req.body.name,req.body.sex,req.body.phone,req.body.password,req.body.department,req.body.major)
+    res.send({
+        msg:'编辑成功',
+        code: 0
+    })
+})
+//admin编辑修改企业信息
+router.post('/editcompany', function (req,res) {
+    // console.log(req.body)
+    Company.Companyupdate(req.body.Icon,req.body.CompanyName,req.body.Sculpture,req.body.CompanyPerson,req.body.UserName,req.body.UserPassword,req.body.CompanyAddress,req.body.CompanyType,req.body.RegisteredAddress,req.body.Condition,req.body.Time,req.body.Capital,req.body.Website)
     res.send({
         msg:'编辑成功',
         code: 0

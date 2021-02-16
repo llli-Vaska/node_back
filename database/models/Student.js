@@ -1,11 +1,4 @@
 const {Sequelize, sequelize} = require('../init')
-// number: '1830630505',
-//     name: '王小虎',
-//     sex: '男',
-//     phone:'15680823501',
-//     password:'123456',
-//     department: '计算机系',
-//     major:'计算机应用技术'
 //student表
 const Student = sequelize.define('student', {
     number: {
