@@ -160,8 +160,24 @@ router.post('/addstudent', function (req, res) {
         msg:'添加成功',
         code: 0
     })
-
 })
+
+//admin添加公司企业
+router.post('/addcompany', function (req, res) {
+    console.log(req.body)
+    Company.Companycreate(req.body.Icon,req.body.CompanyName,req.body.Sculpture,req.body.CompanyPerson,req.body.UserName,req.body.UserPassword,req.body.Introduce,req.body.CompanyAddress,req.body.CompanyType,req.body.Range,req.body.RegisteredAddress,req.body.Condition,req.body.Time,req.body.Capital,req.body.Website).then(res => {
+        console.log(res)
+    }).catch(err => {
+        console.log(err)
+    })
+    res.send({
+        msg:'添加成功',
+        code: 0
+    })
+})
+
+
+
 
 //admin删除单挑学生用户信息
 router.post('/deletestudent', function (req,res) {
