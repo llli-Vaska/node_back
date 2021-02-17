@@ -5,6 +5,7 @@ const Company =  sequelize.define('company', {
     Icon: {
         type: Sequelize.STRING,
         notEmpty: true,
+
         validateL: {
             notEmpty: true
         }
@@ -13,6 +14,7 @@ const Company =  sequelize.define('company', {
     CompanyName: {
         type: Sequelize.STRING,
         notEmpty: true,
+        unique: true,
         validateL: {
             notEmpty: true
         }
@@ -130,6 +132,72 @@ const Company =  sequelize.define('company', {
         }
     },
 })
+//Job Fairs 表 宣讲会
+const JobFairs = sequelize.define('jobfairs', {
+    //公司名
+    CompanyId: {
+        type: Sequelize.STRING,
+        notEmpty: true,
+        validateL: {
+            notEmpty: true
+        }
+    },
+    //起止时间
+    date: {
+        type: Sequelize.STRING,
+        notEmpty: true,
+        validateL: {
+            notEmpty: true
+        }
+    },
+    //学校
+    school: {
+        type: Sequelize.STRING,
+        notEmpty: true,
+        validateL: {
+            notEmpty: true
+        }
+    },
+    //具体地址
+    address: {
+        type: Sequelize.STRING,
+        notEmpty: true,
+        validateL: {
+            notEmpty: true
+        }
+    },
+    //宣讲连接
+    link: {
+        type: Sequelize.STRING,
+        notEmpty: true,
+        validateL: {
+            notEmpty: true
+        }
+    },
+    //宣讲简介
+    introduction: {
+        type: Sequelize.STRING,
+        notEmpty: true,
+        validateL: {
+            notEmpty: true
+        }
+    },
+
+})
+Company.belongsTo(JobFairs,{foreignKey:'CompanyName',targetKey:'CompanyId'})
+Company.findAll({
+    raw:true,
+    include:[{
+        model: JobFairs,
+        'where':{
+            'school': '四川大学'
+        }
+    }],
+
+}).then((data) => {
+
+    console.log(data)
+})
 //查询company表
 exports.findCompanyall = function () {
     return Company.findAll({
@@ -213,4 +281,7 @@ exports.CompanyDelete = function (Icon,CompanyName,Sculpture,CompanyPerson,UserN
 
 Company.sync().then(() => {
     console.log('company表模型已经同步')
+});
+JobFairs.sync().then(() => {
+    console.log('jobfairs表模型已经同步')
 });
