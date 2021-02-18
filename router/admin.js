@@ -9,6 +9,8 @@ const Student = require('../database/models/Student')
 const Position = require('../database/models/Position')
 //company表
 const Company = require('../database/models/Company')
+//PublicLecture表
+const PublicLecture = require('../database/models/PublicLecture')
 const jwt = require('jsonwebtoken')
 
 
@@ -213,5 +215,20 @@ router.post('/studentall',function (req,res) {
         res.send(result)
     })
 })
+
+//添加publiclecture表（宣讲）
+router.post('/addpl', function (req,res) {
+    console.log(req.body)
+    PublicLecture.PublicLecturecreate(req.body.CompanyId,req.body.date,req.body.school,req.body.address,req.body.link,req.body.introduction).then(res => {
+        console.log(res)
+    }).catch(err => {
+        console.log(err)
+    })
+    res.send({
+        msg:'发布成功',
+        code:0
+    })
+})
+
 
 module.exports = router

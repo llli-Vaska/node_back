@@ -132,8 +132,8 @@ const Company =  sequelize.define('company', {
         }
     },
 })
-//Job Fairs 表 宣讲会
-const JobFairs = sequelize.define('jobfairs', {
+//PublicLecture 表 宣讲会
+const PublicLecture = sequelize.define('publiclecture', {
     //公司名
     CompanyId: {
         type: Sequelize.STRING,
@@ -184,20 +184,19 @@ const JobFairs = sequelize.define('jobfairs', {
     },
 
 })
-Company.belongsTo(JobFairs,{foreignKey:'CompanyName',targetKey:'CompanyId'})
-Company.findAll({
-    raw:true,
-    include:[{
-        model: JobFairs,
-        'where':{
-            'school': '四川大学'
-        }
-    }],
-
-}).then((data) => {
-
-    console.log(data)
-})
+// Company.belongsTo(PublicLecture,{foreignKey:'CompanyName',targetKey:'CompanyId'})
+// Company.findAll({
+//     raw:true,
+//     include:[{
+//         model: PublicLecture,
+//         'where':{
+//             'school': '四川大学'
+//         }
+//     }],
+//
+// }).then((data) => {
+//     console.log(data)
+// })
 //查询company表
 exports.findCompanyall = function () {
     return Company.findAll({
@@ -233,6 +232,7 @@ exports.Companycreate = function (Icon,CompanyName,Sculpture,CompanyPerson,UserN
         Website:Website, //公司网站
     })
 }
+
 //修改company表
 exports.Companyupdate = function (id,Icon,CompanyName,Sculpture,CompanyPerson,UserName,UserPassword,Introduce,CompanyAddress,CompanyType,Range,RegisteredAddress,Condition,Time,Capital,Website) {
     return Company.update({
@@ -281,7 +281,4 @@ exports.CompanyDelete = function (Icon,CompanyName,Sculpture,CompanyPerson,UserN
 
 Company.sync().then(() => {
     console.log('company表模型已经同步')
-});
-JobFairs.sync().then(() => {
-    console.log('jobfairs表模型已经同步')
 });
