@@ -214,6 +214,18 @@ router.post('/deletecompany', function (req,res) {
     })
 
 })
+//pl删除单条信息
+router.post('/deletepl',function (req,res){
+    PublicLecture.PublicLectureDelete(req.body.CompanyId,req.body.date,req.body.school,req.body.address,req.body.link,req.body.introduction).then(() => {
+        console.log(req.body)
+        res.send({
+            msg:'删除成功',
+            code: 0
+        })
+    })
+})
+
+
 
 //admin编辑修改学生信息
 router.post('/editstudent', function (req,res) {

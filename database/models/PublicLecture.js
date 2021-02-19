@@ -71,7 +71,19 @@ exports.PublicLecturecreate = function (CompanyId,date,school,address,link,intro
         introduction: introduction//宣讲简介
     })
 }
-
+//pl单条删除
+exports.PublicLectureDelete = function (CompanyId,date,school,address,link,introduction) {
+    return PublicLecture.destroy({
+        where :{
+            CompanyId: CompanyId,//公司名
+            date: date,//起止时间
+            school: school,//学校
+            address: address,//具体地址
+            link: link,//宣讲连接
+            introduction: introduction//宣讲简介
+        }
+    })
+}
 
 
 PublicLecture.sync().then(() => {
