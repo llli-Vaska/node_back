@@ -1,5 +1,4 @@
 //company表
-
 const {Sequelize, sequelize} = require('../init')
 const Company =  sequelize.define('company', {
     //公司图标
@@ -133,8 +132,67 @@ const Company =  sequelize.define('company', {
         }
     },
 })
+//PublicLecture 表 宣讲会
+const PublicLecture = sequelize.define('publiclecture', {
+    //公司名
+    CompanyId: {
+        type: Sequelize.STRING,
+        notEmpty: true,
+        validateL: {
+            notEmpty: true
+        }
+    },
+    //起止时间
+    date: {
+        type: Sequelize.STRING,
+        notEmpty: true,
+        validateL: {
+            notEmpty: true
+        },
+        get() {
+            return this.getDataValue('date').split(',')
+        },
+        set(val) {
+            this.setDataValue('date',val.join('至'))
+        }
+    },
+    //学校
+    school: {
+        type: Sequelize.STRING,
+        notEmpty: true,
+        validateL: {
+            notEmpty: true
+        }
+    },
+    //具体地址
+    address: {
+        type: Sequelize.STRING,
+        notEmpty: true,
+        validateL: {
+            notEmpty: true
+        }
+    },
+    //宣讲连接
+    link: {
+        type: Sequelize.STRING,
+        notEmpty: true,
+        validateL: {
+            notEmpty: true
+        }
+    },
+    //宣讲简介
+    introduction: {
+        type: Sequelize.STRING,
+        notEmpty: true,
+        validateL: {
+            notEmpty: true
+        }
+    },
+
+})
+
 const {Op} = require("sequelize");
-const { PublicLecture } = require('./PublicLecture')
+
 Company.belongsTo(PublicLecture,{foreignKey:'CompanyName',targetKey:'CompanyId'})
 PublicLecture.belongsTo(Company,{foreignKey:'CompanyId',targetKey:'CompanyName'})
 //查询company + publiclecture两表相关信息
@@ -179,6 +237,7 @@ exports.findCpl = function (offset,limit) {
         ],
     })
 }
+
 
 
 

@@ -75,7 +75,7 @@ exports.PublicLecturecreate = function (CompanyId,date,school,address,link,intro
 
 
 PublicLecture.sync().then(() => {
-    console.log('jobfairs表模型已经同步')
+    console.log('PublicLecture表模型已经同步')
 });
 
-module.exports = { PublicLecture }
+// module.exports = { PublicLecture }

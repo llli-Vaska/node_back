@@ -30,7 +30,19 @@ router.post('/cpl', function (req, res) {
     })
 })
 
-
+//添加publiclecture表（宣讲）
+router.post('/addpl', function (req,res) {
+    console.log(req.body)
+    PublicLecture.PublicLecturecreate(req.body.CompanyId,req.body.date,req.body.school,req.body.address,req.body.link,req.body.introduction).then(res => {
+        console.log(res)
+    }).catch(err => {
+        console.log(err)
+    })
+    res.send({
+        msg:'发布成功',
+        code:0
+    })
+})
 
 //对上传的文件进行配置
 // 配置磁盘引擎
@@ -233,19 +245,7 @@ router.post('/studentall',function (req,res) {
     })
 })
 
-//添加publiclecture表（宣讲）
-router.post('/addpl', function (req,res) {
-    console.log(req.body)
-    PublicLecture.PublicLecturecreate(req.body.CompanyId,req.body.date,req.body.school,req.body.address,req.body.link,req.body.introduction).then(res => {
-        console.log(res)
-    }).catch(err => {
-        console.log(err)
-    })
-    res.send({
-        msg:'发布成功',
-        code:0
-    })
-})
+
 
 
 module.exports = router
