@@ -60,7 +60,6 @@ const PublicLecture = sequelize.define('publiclecture', {
 
 
 
-
 //添加发布宣讲活动
 exports.PublicLecturecreate = function (CompanyId,date,school,address,link,introduction) {
     return PublicLecture.create({
@@ -78,3 +77,5 @@ exports.PublicLecturecreate = function (CompanyId,date,school,address,link,intro
 PublicLecture.sync().then(() => {
     console.log('jobfairs表模型已经同步')
 });
+
+module.exports = { PublicLecture }

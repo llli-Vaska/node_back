@@ -1,4 +1,5 @@
 //company表
+
 const {Sequelize, sequelize} = require('../init')
 const Company =  sequelize.define('company', {
     //公司图标
@@ -132,71 +133,57 @@ const Company =  sequelize.define('company', {
         }
     },
 })
-//PublicLecture 表 宣讲会
-const PublicLecture = sequelize.define('publiclecture', {
-    //公司名
-    CompanyId: {
-        type: Sequelize.STRING,
-        notEmpty: true,
-        validateL: {
-            notEmpty: true
-        }
-    },
-    //起止时间
-    date: {
-        type: Sequelize.STRING,
-        notEmpty: true,
-        validateL: {
-            notEmpty: true
-        }
-    },
-    //学校
-    school: {
-        type: Sequelize.STRING,
-        notEmpty: true,
-        validateL: {
-            notEmpty: true
-        }
-    },
-    //具体地址
-    address: {
-        type: Sequelize.STRING,
-        notEmpty: true,
-        validateL: {
-            notEmpty: true
-        }
-    },
-    //宣讲连接
-    link: {
-        type: Sequelize.STRING,
-        notEmpty: true,
-        validateL: {
-            notEmpty: true
-        }
-    },
-    //宣讲简介
-    introduction: {
-        type: Sequelize.STRING,
-        notEmpty: true,
-        validateL: {
-            notEmpty: true
-        }
-    },
+const {Op} = require("sequelize");
+const { PublicLecture } = require('./PublicLecture')
+Company.belongsTo(PublicLecture,{foreignKey:'CompanyName',targetKey:'CompanyId'})
+PublicLecture.belongsTo(Company,{foreignKey:'CompanyId',targetKey:'CompanyName'})
+//查询company + publiclecture两表相关信息
+exports.findcplall = function (){
+    return Company.findAll({
+        attributes:['Icon','CompanyName'],
+        raw:true,
+        include:[{
+            model: PublicLecture,
+            where: {
+                CompanyId: {
+                    [Op.notLike]: 'null'
+                }
+            }
+        }]
+    })
+}
+//查询company + publiclecture两表相关信息 (offset limit)
+exports.findCpl = function (offset,limit) {
+    return Company.findAll({
+        subQuery: false,
+        raw:true,
+        offset: offset,
+        limit: limit,
+        include:[{
+            model: PublicLecture,
+            subQuery: false,
+            where: {
+                CompanyId: {
+                    [Op.notLike]: 'null'
+                }
+            },
+        }],
+        attributes: [
+            'Icon','CompanyName',
+            [sequelize.col('publiclecture.CompanyId'),'CompanyId'],
+            [sequelize.col('publiclecture.date'),'date'],
+            [sequelize.col('publiclecture.school'),'school'],
+            [sequelize.col('publiclecture.address'),'address'],
+            [sequelize.col('publiclecture.link'),'link'],
+            [sequelize.col('publiclecture.introduction'),'introduction']
+        ],
+    })
+}
 
-})
-// Company.belongsTo(PublicLecture,{foreignKey:'CompanyName',targetKey:'CompanyId'})
-// Company.findAll({
-//     raw:true,
-//     include:[{
-//         model: PublicLecture,
-//         'where':{
-//             'school': '四川大学'
-//         }
-//     }],
-//
-// }).then((data) => {
-//     console.log(data)
-// })
+
+
+
+
 //查询company表
 exports.findCompanyall = function () {
     return Company.findAll({

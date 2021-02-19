@@ -12,9 +12,26 @@ const Company = require('../database/models/Company')
 //PublicLecture表
 const PublicLecture = require('../database/models/PublicLecture')
 const jwt = require('jsonwebtoken')
-
-
 const multer  = require('multer')
+
+//查询company+publiclecture表
+router.post('/cplall', function (req,res){
+    Company.findcplall({
+        attachment:['Icon','CompanyName','date','school','address','link','introduction']
+    }).then(result =>{
+        res.send(result)
+    })
+})
+//company+publiclecture表分页查询
+router.post('/cpl', function (req, res) {
+    Company.findCpl(req.body.offset,req.body.limit).then(result => {
+        // console.log(result)
+        res.send(result)
+    })
+})
+
+
+
 //对上传的文件进行配置
 // 配置磁盘引擎
 let storage = multer.diskStorage({
