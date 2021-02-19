@@ -71,7 +71,31 @@ router.post("/upload", upload.single('fr'), (req, res) => {
     let imgUrl = 'http://p373196l49.wicp.vip/'+`img/${name}`
     res.send({ err: 0, msg: "ok", imgUrl, name})
 })
-
+// -----------------------------
+let resumestorage = multer.diskStorage({
+    destination: function(req, file, cb) {
+        //    指定文件存放路径
+        cb(null, "./public/resume")
+    },
+    filename: function(req, file, cb) {
+        // 指定文件名,先获取扩展,随机生成文件名保存给保存文件的方法
+        //获取文件扩展名
+        let exts = file.originalname.split(".")
+        let ext = exts[exts.length - 1] //为了防止上传图片时,图片的名称中含多个点,从后面取最后一个解决问题
+        let tmpname = Date.now() + parseInt(Math.random() * 9999) //时间戳+随机数生成文件名
+        cb(null, `${tmpname}.${ext}`)
+    }
+})
+let upresume = multer({ storage: resumestorage })
+//上传简历文件
+router.post('/upresume', upresume.single('resume'), (req,res) => {
+    console.log(req.file)
+    console.log(req)
+    let name = req.file.filename
+    let resumeUrl = 'http://p373196l49.wicp.vip/'+`resume/${name}`
+    res.send({err: 0, msg: "ok", resumeUrl, name})
+})
+//--------------------------------
 
 //删除本地图片文件
 router.post('/deletepicture', function (req,res) {
