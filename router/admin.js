@@ -16,6 +16,24 @@ const JobFair = require('../database/models/JobFair')
 const jwt = require('jsonwebtoken')
 const multer  = require('multer')
 
+//查询jobfair表
+router.post('/jfall', function (req,res){
+    JobFair.findjfall({
+        // attributes:['JobFireTitle','date','address','num1','num2','introductions'],
+    }).then(result =>{
+        res.send(result)
+    })
+})
+//jobfair表分页查询
+router.post('/jf', function (req, res) {
+    JobFair.findjf(req.body.offset,req.body.limit).then(result => {
+        // console.log(result)
+        res.send(result)
+    })
+})
+
+
+
 //查询company+publiclecture表
 router.post('/cplall', function (req,res){
     Company.findcplall({
@@ -265,7 +283,16 @@ router.post('/deletepl',function (req,res){
         })
     })
 })
-
+//jf删除单条信息
+router.post('/deletejf',function (req,res){
+    JobFair.JobFaireDelete(req.body.JobFireTitle,req.body.date,req.body.address,req.body.num1,req.body.num2,req.body.introduction).then(() => {
+        console.log(req.body)
+        res.send({
+            msg:'删除成功',
+            code: 0
+        })
+    })
+})
 
 
 //admin编辑修改学生信息

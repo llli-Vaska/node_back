@@ -69,6 +69,35 @@ exports.JobFaircreate = function (JobFireTitle,date,address,num1,num2,introducti
         introduction: introduction//招聘会简介
     })
 }
+//jf单条删除
+exports.JobFaireDelete = function (JobFireTitle,date,address,num1,num2,introduction) {
+    return JobFair.destroy({
+        where :{
+            JobFireTitle: JobFireTitle,//招聘会标题
+            date: date,//起止时间
+            address: address,//具体地址
+            num1:num1,//招聘企业数
+            num2:num2,//招聘职位数
+            introduction: introduction//招聘会简介
+        }
+    })
+}
+
+
+//查询jobfair表相关信息
+exports.findjfall = function (){
+    return JobFair.findAll({
+        raw:true
+    })
+}
+//查询student表 (offset limit)
+exports.findjf = function (offset,limit) {
+    return JobFair.findAll({
+        raw: true,
+        offset: offset,
+        limit: limit
+    })
+}
 
 
 
