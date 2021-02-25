@@ -9,8 +9,9 @@ const sequelize = new Sequelize('test','root','root', {
         charset:'utf8',
         dialectOptions:{
             collate: 'utf8_general_ci'
-        }
-    }
+        },
+    },
+
 
 })
 // 测试连接

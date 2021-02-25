@@ -11,6 +11,8 @@ const Position = require('../database/models/Position')
 const Company = require('../database/models/Company')
 //PublicLecture表
 const PublicLecture = require('../database/models/PublicLecture')
+//jobfair表
+const JobFair = require('../database/models/JobFair')
 const jwt = require('jsonwebtoken')
 const multer  = require('multer')
 
@@ -30,6 +32,7 @@ router.post('/cpl', function (req, res) {
     })
 })
 
+
 //添加publiclecture表（宣讲）
 router.post('/addpl', function (req,res) {
     console.log(req.body)
@@ -43,6 +46,20 @@ router.post('/addpl', function (req,res) {
         code:0
     })
 })
+//添加jobfair表（招聘）
+router.post('/addjf',function (req,res) {
+    console.log(req.body)
+    JobFair.JobFaircreate(req.body.JobFireTitle,req.body.date,req.body.address,req.body.num1,req.body.num2,req.body.introduction).then(res => {
+        console.log(res)
+    }).catch(err => {
+        console.log(err)
+    })
+    res.send({
+        msg:'发布成功',
+        code:0
+    })
+})
+
 
 //对上传的文件进行配置
 // 配置磁盘引擎

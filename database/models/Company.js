@@ -190,7 +190,6 @@ const PublicLecture = sequelize.define('publiclecture', {
     },
 
 })
-
 const {Op} = require("sequelize");
 
 Company.belongsTo(PublicLecture,{foreignKey:'CompanyName',targetKey:'CompanyId'})

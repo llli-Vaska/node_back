@@ -16,6 +16,7 @@ require('./database/models/Student')
 require('./database/models/Position')
 require('./database/models/Company')
 require('./database/models/PublicLecture')
+require('./database/models/JobFair')
 
 app.use('*', function (req, res, next) {
     // 设置请求头为允许跨域

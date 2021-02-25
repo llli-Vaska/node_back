@@ -1,4 +1,5 @@
 const {Sequelize, sequelize} = require('../init')
+
 //PublicLecture 表 宣讲会
 const PublicLecture = sequelize.define('publiclecture', {
     //公司名
