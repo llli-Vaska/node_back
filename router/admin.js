@@ -145,11 +145,18 @@ router.post('/deletepicture', function (req,res) {
 
     })
 })
+//职位表position分页查询
+router.post('/examine', function (req, res) {
+    Position.findExamine(req.body.offset,req.body.limit).then(result => {
+        // console.log(result)
+        res.send(result)
+    })
+})
 
 //职位表（只有少量数据）
 router.post('/position',function (req,res) {
     Position.findPositionall({
-        attachment:['TitlePosition','Degree','Salary','Welfare','Technology','Duty','Requirement','Region','Number']
+        attachment:['TitlePosition','CompanyName','Degree','Salary','Welfare','Technology','Duty','Requirement','Region','Number','state']
     }).then(result => {
         res.send(result)
     })
@@ -293,12 +300,30 @@ router.post('/deletejf',function (req,res){
         })
     })
 })
-
+//jfe删除单条信息
+router.post('/deletejfe',function (req,res){
+    Position.PositionDelete(req.body.TitlePosition,req.body.CompanyName,req.body.Degree,req.body.Salary,req.body.Welfare,req.body.Technology,req.body.Duty,req.body.Region,req.body.Number,req.body.state).then(() => {
+        console.log(req.body)
+        res.send({
+            msg:'删除成功',
+            code: 0
+        })
+    })
+})
 
 //admin编辑修改学生信息
 router.post('/editstudent', function (req,res) {
     // console.log(req.body)
     Student.Studentupdate(req.body.number,req.body.name,req.body.sex,req.body.phone,req.body.password,req.body.department,req.body.major)
+    res.send({
+        msg:'编辑成功',
+        code: 0
+    })
+})
+//admin修改审核状态adopt refuse
+router.post('/adoptrefuse', function (req,res) {
+    // console.log(req.body)
+    Position.Positionupdate(req.body.TitlePosition,req.body.CompanyName,req.body.Degree,req.body.Salary,req.body.Welfare,req.body.Technology,req.body.Duty,req.body.Region,req.body.Number,req.body.state)
     res.send({
         msg:'编辑成功',
         code: 0

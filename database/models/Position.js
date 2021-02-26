@@ -10,6 +10,14 @@ const Position =  sequelize.define('position', {
             notEmpty: true
         }
     },
+    //公司名
+    CompanyName: {
+      type: Sequelize.STRING,
+      notEmpty: true,
+      validateL: {
+          notEmpty: true
+      }
+    },
     // 学历要求
     Degree: {
         type: Sequelize.STRING,
@@ -66,6 +74,13 @@ const Position =  sequelize.define('position', {
             notEmpty: true
         }
     },
+    //审核状态
+    state: {
+        type: Sequelize.STRING,
+        notEmpty: true,
+        allowNull: false,
+        defaultValue: '申请中'
+    }
 })
 
 //查询position表 all
@@ -74,7 +89,57 @@ exports.findPositionall = function () {
         raw: true,
     })
 }
-
+//查询position表 (offset limit)
+exports.findExamine = function (offset,limit) {
+    return Position.findAll({
+        raw: true,
+        offset: offset,
+        limit: limit
+    })
+}
+//jfe单条删除
+exports.PositionDelete = function (TitlePosition,CompanyName,Degree,Salary,Welfare,Technology,Duty,Region,Number,state) {
+    return Position.destroy({
+        where :{
+            TitlePosition: TitlePosition,//职位名
+            CompanyName: CompanyName,//公司名
+            Degree: Degree,//学历要求
+            Salary: Salary,//薪资
+            Welfare: Welfare,//福利待遇
+            Technology: Technology,//技术要求
+            Duty: Duty,//工作职责
+            Region: Region,//公司所在区域
+            Number: Number,//招收人数
+            state:state//审核状态（0：未通过审核 1：通过审核 2:申请中）
+        }
+    })
+}
+//修改position表
+exports.Positionupdate = function (TitlePosition,CompanyName,Degree,Salary,Welfare,Technology,Duty,Region,Number,state) {
+    return Position.update({
+        TitlePosition: TitlePosition,//职位名
+        CompanyName: CompanyName,//公司名
+        Degree: Degree,//学历要求
+        Salary: Salary,//薪资
+        Welfare: Welfare,//福利待遇
+        Technology: Technology,//技术要求
+        Duty: Duty,//工作职责
+        Region: Region,//公司所在区域
+        Number: Number,//招收人数
+        state:state//审核状态（0：未通过审核 1：通过审核 2:申请中）
+    },{
+        'where': {'TitlePosition': TitlePosition,//职位名
+            'CompanyName': CompanyName,//公司名
+            'Degree': Degree,//学历要求
+            'Salary': Salary,//薪资
+            'Welfare': Welfare,//福利待遇
+            'Technology': Technology,//技术要求
+            'Duty': Duty,//工作职责
+            'Region': Region,//公司所在区域
+            'Number': Number,//招收人数
+             }
+    })
+}
 
 Position.sync().then(() => {
     console.log('position表模型已经同步')
