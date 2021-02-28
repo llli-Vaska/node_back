@@ -335,6 +335,18 @@ router.post('/adoptposition', function (req,res) {
         res.send(result)
     })
 })
+//查询审核中的position
+router.post('/reviewedposition', function (req,res) {
+    Position.Positionreviewe().then(result => {
+        res.send(result)
+    })
+})
+//查询审核未通过的position
+router.post('/failedposition', function (req,res) {
+    Position.Positionfailed().then(result => {
+        res.send(result)
+    })
+})
 //admin编辑修改企业信息
 router.post('/editcompany', function (req,res) {
     // console.log(req.body)

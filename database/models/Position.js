@@ -114,11 +114,27 @@ exports.PositionDelete = function (TitlePosition,CompanyName,Degree,Salary,Welfa
         }
     })
 }
+//查询审核中的position
+exports.Positionreviewe = function () {
+    return Position.findAll({
+        where: {
+            state: '申请中'
+        }
+    })
+}
 //查询通过审核的position
 exports.Positionadopt = function () {
     return Position.findAll({
         where: {
             state: '审核通过'
+        }
+    })
+}
+//查询审核未通过的position
+exports.Positionfailed = function () {
+    return Position.findAll({
+        where: {
+            state: '未通过审核'
         }
     })
 }
