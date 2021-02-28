@@ -114,6 +114,14 @@ exports.PositionDelete = function (TitlePosition,CompanyName,Degree,Salary,Welfa
         }
     })
 }
+//查询通过审核的position
+exports.Positionadopt = function () {
+    return Position.findAll({
+        where: {
+            state: '审核通过'
+        }
+    })
+}
 //修改position表
 exports.Positionupdate = function (TitlePosition,CompanyName,Degree,Salary,Welfare,Technology,Duty,Region,Number,state) {
     return Position.update({

@@ -329,6 +329,12 @@ router.post('/adoptrefuse', function (req,res) {
         code: 0
     })
 })
+//查询通过审核的position
+router.post('/adoptposition', function (req,res) {
+    Position.Positionadopt().then(result => {
+        res.send(result)
+    })
+})
 //admin编辑修改企业信息
 router.post('/editcompany', function (req,res) {
     // console.log(req.body)
