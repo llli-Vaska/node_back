@@ -101,7 +101,28 @@ exports.findStudentall = function () {
         raw: true,
     })
 }
-
+//查询student表 login
+exports.findStudentlogin = function (number,password) {
+    return Student.findOne({
+        raw: true,
+    },{
+        where: {
+            number: number,
+            password: password
+        }
+    })
+}
+//student添加表中token
+// exports.Studenttokenupdate = function (number,password,studenttoken) {
+//     return Student.update({
+//         studenttoken: studenttoken
+//     },{
+//         'where': {
+//             'number': number,
+//             'password': password
+//         }
+//     })
+// }
 //查询student表 (offset limit)
 exports.findStudent = function (offset,limit) {
     return Student.findAll({

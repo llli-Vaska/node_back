@@ -171,7 +171,32 @@ router.post('/company', function (req,res) {
         // console.log(result)
     })
 })
+// student登录
+router.post('/studentlogin',function (req,res) {
+    //在数据库表中查找 'number' 'password'
+    let {studentname,studentpassword} = req.body.ruleForm
+    // let studentname = req.body.number
+    // let studentpassword = req.body.password
 
+     Student.findStudentlogin(studentname,studentpassword).then(result => {
+         console.log(result)
+         let {number,password} = result
+         if (number ===studentname && password === studentpassword) {
+             //生成token
+             const studenttoken = jwt.sign({result},"abc")
+             console.log(studenttoken)
+             res.send({code:0,msg:'登录成功',studenttoken})
+             console.log('登录成功')
+         }else{
+             res.send({code:-1,msg:'登录失败'})
+             console.log('登录失败')
+         }
+         })
+
+
+
+
+})
 //admin登录
 router.post('/adminlogin',function (req,res){
         /*
