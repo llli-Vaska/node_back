@@ -18,7 +18,20 @@ const jwt = require('jsonwebtoken')
 const multer  = require('multer')
 const { sequelize } = require('../database/init')
 const {Op} = require("sequelize");
-//查询各专业
+//sex student
+router.post('/studentsexman',function (req,res) {
+    Student.findStudentSexman().then(result => {
+        //返回男性人数
+        res.send(result)
+    })
+})
+router.post('/studentsexwoman',function (req,res) {
+    Student.findStudentSexwoman().then(result => {
+        //返回女性人数
+        res.send(result)
+    })
+})
+//查询各专业类型 以及人数
 router.get('/selectscale', function (req,res){
     Student.findStudentdepartment().then(result =>{
         let list = []
@@ -31,7 +44,7 @@ router.get('/selectscale', function (req,res){
             })
         }
         setTimeout(()=> {
-            console.log(calse)
+            // console.log(calse)
             res.send(calse)
         },100)
 

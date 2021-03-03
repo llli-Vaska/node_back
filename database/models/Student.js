@@ -123,6 +123,24 @@ exports.findStudentdepartmentCount = function (e) {
     })
 
 }
+//查询student表sex:男
+exports.findStudentSexman = function () {
+    return Student.findAll({
+        raw:true,
+        where:{
+            sex:'男'
+        }
+    })
+}
+//查询student表sex:女
+exports.findStudentSexwoman = function () {
+    return Student.findAll({
+        raw:true,
+        where:{
+            sex:'女'
+        }
+    })
+}
 //查询student表department
 exports.findStudentdepartment = function () {
     return Student.findAll({
