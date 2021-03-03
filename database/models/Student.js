@@ -1,4 +1,5 @@
 const {Sequelize, sequelize} = require('../init')
+const {Op} = require("sequelize");
 //student表
 const Student = sequelize.define('student', {
     number: {
@@ -94,7 +95,43 @@ exports.Studentcreate = function (number,name,sex,phone,password,department,majo
 
     })
 }
+//查询student表department count
+exports.findStudentdepartmentCount = function (e) {
+    // return Student.findAll({
+    //     raw:true,
+    //     attributes: [
+    //             // [sequelize.fn('DISTINCT', sequelize.col('department')), 'type'],
+    //         [sequelize.fn('COUNT', sequelize.col('department')), 'value']
+    //     ],
+    //     where: {
+    //         department: {
+    //             [Op.in]: ['计算机系','经管系']
+    //         }
+    //     }
+    //
+    // })
+    return Student.findAndCountAll({
+        raw:true,
+        attributes:[
+                    [sequelize.fn('DISTINCT', sequelize.col('department')), 'type'],
+                [sequelize.fn('COUNT', sequelize.col('department')), 'value']
+            ],
+        where: {
+            department:e
 
+        }
+    })
+
+}
+//查询student表department
+exports.findStudentdepartment = function () {
+    return Student.findAll({
+        raw:true,
+        attributes: [
+            [sequelize.fn('DISTINCT', sequelize.col('department')), 'type']
+        ],
+    })
+}
 //查询student表 all
 exports.findStudentall = function () {
     return Student.findAll({

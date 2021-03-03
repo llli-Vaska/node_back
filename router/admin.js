@@ -1,3 +1,4 @@
+
 const express = require('express')
 const router = express.Router()
 const fs = require('fs')
@@ -15,7 +16,28 @@ const PublicLecture = require('../database/models/PublicLecture')
 const JobFair = require('../database/models/JobFair')
 const jwt = require('jsonwebtoken')
 const multer  = require('multer')
+const { sequelize } = require('../database/init')
+const {Op} = require("sequelize");
+//查询各专业
+router.get('/selectscale', function (req,res){
+    Student.findStudentdepartment().then(result =>{
+        let list = []
+        let calse = []
+        for (let i=0;i <= result.length - 1 ;i++)
+        {
+            list[i] = result[i].type
+            Student.findStudentdepartmentCount(list[i]).then(result1 => {
+                calse[i] = result1.rows
+            })
+        }
+        setTimeout(()=> {
+            console.log(calse)
+            res.send(calse)
+        },100)
 
+    })
+
+})
 //查询jobfair表
 router.post('/jfall', function (req,res){
     JobFair.findjfall({
@@ -175,6 +197,8 @@ router.post('/company', function (req,res) {
 router.post('/studentlogin',function (req,res) {
     //在数据库表中查找 'number' 'password'
     let {studentname,studentpassword} = req.body.ruleForm
+
+
     // let studentname = req.body.number
     // let studentpassword = req.body.password
 
