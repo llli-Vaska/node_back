@@ -97,19 +97,6 @@ exports.Studentcreate = function (number,name,sex,phone,password,department,majo
 }
 //查询student表department count
 exports.findStudentdepartmentCount = function (e) {
-    // return Student.findAll({
-    //     raw:true,
-    //     attributes: [
-    //             // [sequelize.fn('DISTINCT', sequelize.col('department')), 'type'],
-    //         [sequelize.fn('COUNT', sequelize.col('department')), 'value']
-    //     ],
-    //     where: {
-    //         department: {
-    //             [Op.in]: ['计算机系','经管系']
-    //         }
-    //     }
-    //
-    // })
     return Student.findAndCountAll({
         raw:true,
         attributes:[
@@ -164,6 +151,16 @@ exports.findStudentlogin = function (number,password) {
         where: {
             number: number,
             password: password
+        }
+    })
+}
+//查询student表 id
+exports.findStudentid = function (number) {
+    return Student.findOne({
+        raw: true,
+        attributes:['id'],
+        where: {
+            number: number,
         }
     })
 }

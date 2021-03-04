@@ -1,5 +1,5 @@
 const Sequelize = require('sequelize')
-
+const {Op} = require("sequelize");
 const sequelize = new Sequelize('test','root','root', {
     host: "localhost",
     port: '3306',

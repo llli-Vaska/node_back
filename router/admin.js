@@ -14,10 +14,37 @@ const Company = require('../database/models/Company')
 const PublicLecture = require('../database/models/PublicLecture')
 //jobfair表
 const JobFair = require('../database/models/JobFair')
+//collection表
+const Collection = require('../database/models/Collection')
 const jwt = require('jsonwebtoken')
 const multer  = require('multer')
 const { sequelize } = require('../database/init')
 const {Op} = require("sequelize");
+// 所登录账号的已收藏的职位信息
+router.post('/collection',function (req,res) {
+    //通过登录账号 查询该登录账号的id
+    console.log(req.body.number)
+    let number = req.body.number
+    Student.findStudentid(number).then(result => {
+        console.log(result)
+        Collection.findCollectionid(result.id).then(result => {
+            let list = []
+            let result2 = []
+            for (let i =0;i <= result.length - 1;i++){
+                list[i] = result[i].position_collect_id
+                Position.findPositioncollected(list[i]).then(result => {
+                    result2[i] = result
+                })
+            }
+            //得到对应所登录账号的职位收藏信息
+            setTimeout(()=>{
+                res.send(result2)
+            },200)
+
+        })
+    })
+
+})
 //sex student
 router.post('/studentsexman',function (req,res) {
     Student.findStudentSexman().then(result => {
@@ -69,7 +96,7 @@ router.post('/jf', function (req, res) {
 
 
 
-//查询company+publiclecture表
+//查询company+publiclecture表（公司与宣讲会）
 router.post('/cplall', function (req,res){
     Company.findcplall({
         attachment:['Icon','CompanyName','date','school','address','link','introduction']

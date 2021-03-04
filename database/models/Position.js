@@ -83,6 +83,19 @@ const Position =  sequelize.define('position', {
     }
 })
 
+//查询position表 用户已收藏的职业position
+exports.findPositioncollected = function (result) {
+  return Position.findAll({
+            raw: true,
+            where:{
+                id:result
+            }
+        })
+
+
+}
+
+
 //查询position表 all
 exports.findPositionall = function () {
     return Position.findAll({
