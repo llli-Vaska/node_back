@@ -204,7 +204,7 @@
 * 状态码：200
 * 简介：接口具体响应数据根据postman自寻查看
 * Rap地址：[http://rap2.taobao.org/repository/editor?id=276416&mod=440030&itf=1892770](http://rap2.taobao.org/repository/editor?id=276416&mod=440030&itf=1892770)
-* 请求接口格式：
+* 请求接口格式（number为学生所登录的账号也是其学号[目前有数据的账号为1830630614]）：
 
 ```
 └─ number: Number  
