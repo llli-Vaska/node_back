@@ -1,6 +1,5 @@
 ***本文档由 Rap2 (https://github.com/thx/rap2-delos) 生成***
 
-***本项目仓库：[http://rap2.taobao.org/repository/editor?id=276416](http://rap2.taobao.org/repository/editor?id=276416) ***
 
 ***生成日期：2021-03-05 07:54:07***
 
@@ -11,7 +10,6 @@
 * 类型：POST
 * 状态码：200
 * 简介：示例接口描述
-* Rap地址：[http://rap2.taobao.org/repository/editor?id=276416&mod=440030&itf=1877396](http://rap2.taobao.org/repository/editor?id=276416&mod=440030&itf=1877396)
 * 请求接口格式：
 
 ```
@@ -47,7 +45,6 @@
 * 类型：POST
 * 状态码：200
 * 简介：无
-* Rap地址：[http://rap2.taobao.org/repository/editor?id=276416&mod=440030&itf=1877397](http://rap2.taobao.org/repository/editor?id=276416&mod=440030&itf=1877397)
 * 请求接口格式：
 
 ```
@@ -75,7 +72,6 @@
 * 类型：POST
 * 状态码：200
 * 简介：无
-* Rap地址：[http://rap2.taobao.org/repository/editor?id=276416&mod=440030&itf=1877398](http://rap2.taobao.org/repository/editor?id=276416&mod=440030&itf=1877398)
 * 请求接口格式：
 
 ```
@@ -103,7 +99,6 @@
 * 类型：POST
 * 状态码：200
 * 简介：无
-* Rap地址：[http://rap2.taobao.org/repository/editor?id=276416&mod=440030&itf=1877399](http://rap2.taobao.org/repository/editor?id=276416&mod=440030&itf=1877399)
 * 请求接口格式：
 
 ```
@@ -131,7 +126,6 @@
 * 类型：POST
 * 状态码：200
 * 简介：无
-* Rap地址：[http://rap2.taobao.org/repository/editor?id=276416&mod=440030&itf=1878458](http://rap2.taobao.org/repository/editor?id=276416&mod=440030&itf=1878458)
 * 请求接口格式：
 
 ```
@@ -159,7 +153,6 @@
 * 类型：POST
 * 状态码：200
 * 简介：无
-* Rap地址：[http://rap2.taobao.org/repository/editor?id=276416&mod=440030&itf=1878462](http://rap2.taobao.org/repository/editor?id=276416&mod=440030&itf=1878462)
 * 请求接口格式：
 
 ```
@@ -178,7 +171,6 @@
 * 类型：POST
 * 状态码：200
 * 简介：无
-* Rap地址：[http://rap2.taobao.org/repository/editor?id=276416&mod=440030&itf=1888094](http://rap2.taobao.org/repository/editor?id=276416&mod=440030&itf=1888094)
 * 请求接口格式：
 
 ```
@@ -203,7 +195,6 @@
 * 类型：POST
 * 状态码：200
 * 简介：接口具体响应数据根据postman自寻查看
-* Rap地址：[http://rap2.taobao.org/repository/editor?id=276416&mod=440030&itf=1892770](http://rap2.taobao.org/repository/editor?id=276416&mod=440030&itf=1892770)
 * 请求接口格式：
 
 ```
@@ -235,7 +226,6 @@
 * 类型：POST
 * 状态码：200
 * 简介：code为-1时为账号已被注册 即注册失败
-* Rap地址：[http://rap2.taobao.org/repository/editor?id=276416&mod=440030&itf=1893643](http://rap2.taobao.org/repository/editor?id=276416&mod=440030&itf=1893643)
 * 请求接口格式：
 
 ```
@@ -263,7 +253,6 @@
 * 类型：POST
 * 状态码：200
 * 简介：无
-* Rap地址：[http://rap2.taobao.org/repository/editor?id=276416&mod=440030&itf=1893765](http://rap2.taobao.org/repository/editor?id=276416&mod=440030&itf=1893765)
 * 请求接口格式：
 
 ```
@@ -287,7 +276,6 @@
 * 类型：POST
 * 状态码：200
 * 简介：注册失败 返回code:-1
-* Rap地址：[http://rap2.taobao.org/repository/editor?id=276416&mod=440030&itf=1893819](http://rap2.taobao.org/repository/editor?id=276416&mod=440030&itf=1893819)
 * 请求接口格式：
 
 ```
