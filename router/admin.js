@@ -237,11 +237,8 @@ router.post('/company', function (req,res) {
 router.post('/studentlogin',function (req,res) {
     //在数据库表中查找 'number' 'password'
     let {studentname,studentpassword} = req.body.ruleForm
-
-
     // let studentname = req.body.number
     // let studentpassword = req.body.password
-
      Student.findStudentlogin(studentname,studentpassword).then(result => {
          console.log(result)
          let {number,password} = result
@@ -257,9 +254,34 @@ router.post('/studentlogin',function (req,res) {
          }
          })
 
-
-
-
+})
+// student注册接口
+router.post('/studentregister',function (req,res){
+        //在数据库中查找请求注册的number(账号 学号)是否存在
+    // console.log(req.body)
+    let {name,sex,number,password,phone,department,major} = req.body
+    console.log(name,sex,number,password,phone,department,major)
+    //查询数据库中是否有该注册的账号
+    Student.Studentfind({where:{
+        number:number
+        }}).then(result => {
+        console.log(result)
+        //判断该账号是否已注册
+        if (!result){
+            console.log('可以注册')
+            Student.Studentcreate(number,name,sex,phone,password,department,major).then(() => {
+                res.send({
+                    code:0,
+                    msg:'注册成功！'
+                })
+            })
+        }else {
+            res.send({
+                code:-1,
+                msg:'注册失败！ 该账号可能已被注册'
+            })
+        }
+    })
 })
 //admin登录
 router.post('/adminlogin',function (req,res){
