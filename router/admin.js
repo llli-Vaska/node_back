@@ -233,6 +233,34 @@ router.post('/company', function (req,res) {
         // console.log(result)
     })
 })
+//company登录
+router.post('/companylogin',function (req,res){
+    //在数据库表中查找 'UserName' 'UserPassword'
+    let {UserName,UserPassword} = req.body
+    console.log(UserName,UserPassword)
+    Company.Companyfind({where:{
+            UserName:UserName,
+            UserPassword:UserPassword
+        }}).then(result => {
+        console.log(result)
+        if (result) {
+            //登录成功
+            //生成token
+            const CompanyToken = jwt.sign({result},"abc")
+            // console.log(CompanyToken)
+                res.send({
+                    code:0,
+                    msg:'登录成功',
+                    CompanyToken
+                })
+        }else {
+            res.send({
+                code:-1,
+                msg:'登录失败!'
+            })
+        }
+    })
+})
 // student登录
 router.post('/studentlogin',function (req,res) {
     //在数据库表中查找 'number' 'password'
@@ -245,7 +273,7 @@ router.post('/studentlogin',function (req,res) {
          if (number ===studentname && password === studentpassword) {
              //生成token
              const studenttoken = jwt.sign({result},"abc")
-             console.log(studenttoken)
+             // console.log(studenttoken)
              res.send({code:0,msg:'登录成功',studenttoken})
              console.log('登录成功')
          }else{

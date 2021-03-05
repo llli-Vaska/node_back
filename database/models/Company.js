@@ -194,6 +194,11 @@ const {Op} = require("sequelize");
 
 Company.belongsTo(PublicLecture,{foreignKey:'CompanyName',targetKey:'CompanyId'})
 PublicLecture.belongsTo(Company,{foreignKey:'CompanyId',targetKey:'CompanyName'})
+
+exports.Companyfind = function (e) {
+    return Company.findOne(e)
+}
+
 //查询company + publiclecture两表相关信息
 exports.findcplall = function (){
     return Company.findAll({
