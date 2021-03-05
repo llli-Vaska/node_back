@@ -2,7 +2,7 @@
 
 ***本项目仓库：[http://rap2.taobao.org/repository/editor?id=276416](http://rap2.taobao.org/repository/editor?id=276416) ***
 
-***生成日期：2021-03-04 13:04:17***
+***生成日期：2021-03-05 07:54:07***
 
 # 仓库：校园招聘平台
 ## 模块：公司信息模块
@@ -204,7 +204,7 @@
 * 状态码：200
 * 简介：接口具体响应数据根据postman自寻查看
 * Rap地址：[http://rap2.taobao.org/repository/editor?id=276416&mod=440030&itf=1892770](http://rap2.taobao.org/repository/editor?id=276416&mod=440030&itf=1892770)
-* 请求接口格式（number为学生所登录的账号也是其学号[目前有数据的账号为1830630614]）：
+* 请求接口格式：
 
 ```
 └─ number: Number  
@@ -226,5 +226,82 @@
    ├─ Region: String  
    ├─ Number: String  
    └─ state: String  
+
+```
+
+
+### 接口：学生注册接口
+* 地址：http://p373196l49.wicp.vip/studentregister
+* 类型：POST
+* 状态码：200
+* 简介：code为-1时为账号已被注册 即注册失败
+* Rap地址：[http://rap2.taobao.org/repository/editor?id=276416&mod=440030&itf=1893643](http://rap2.taobao.org/repository/editor?id=276416&mod=440030&itf=1893643)
+* 请求接口格式：
+
+```
+├─ name: String  (姓名)
+├─ sex: String  (性别)
+├─ number: String  (学号（登录账号）)
+├─ password: String  (密码)
+├─ phone: String  (手机号)
+├─ department: String  (系别)
+└─ major: String  (专业)
+
+```
+
+* 返回接口格式：
+
+```
+├─ code: Number  
+└─ msg: String  
+
+```
+
+
+### 接口：企业公司登录接口
+* 地址：http://p373196l49.wicp.vip/companylogin
+* 类型：POST
+* 状态码：200
+* 简介：无
+* Rap地址：[http://rap2.taobao.org/repository/editor?id=276416&mod=440030&itf=1893765](http://rap2.taobao.org/repository/editor?id=276416&mod=440030&itf=1893765)
+* 请求接口格式：
+
+```
+├─ UserName: String  (账号（手机号）)
+└─ UserPassword: String  (密码)
+
+```
+
+* 返回接口格式：
+
+```
+├─ code: Number  
+├─ msg: String  
+└─ CompanyToken: String  
+
+```
+
+
+### 接口：企业公司注册接口
+* 地址：http://p373196l49.wicp.vip/companyregister
+* 类型：POST
+* 状态码：200
+* 简介：注册失败 返回code:-1
+* Rap地址：[http://rap2.taobao.org/repository/editor?id=276416&mod=440030&itf=1893819](http://rap2.taobao.org/repository/editor?id=276416&mod=440030&itf=1893819)
+* 请求接口格式：
+
+```
+├─ CompanyName: String  (公司名)
+├─ CompanyPerson: String  (法人)
+├─ UserName: String  (账号（手机号）)
+└─ UserPassword: String  (密码)
+
+```
+
+* 返回接口格式：
+
+```
+├─ code: Number  
+└─ msg: String  
 
 ```
