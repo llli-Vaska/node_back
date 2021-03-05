@@ -261,7 +261,15 @@ exports.findCompany = function (offset,limit) {
         limit: limit
     })
 }
-
+//注册公司账号
+exports.Companycreateregister = function (CompanyName,CompanyPerson,UserName,UserPassword) {
+    return Company.create({
+        CompanyName: CompanyName, //公司名
+        CompanyPerson: CompanyPerson, //法人代表
+        UserName: UserName, //账号
+        UserPassword: UserPassword, //密码
+    })
+}
 //添加公司企业
 exports.Companycreate = function (Icon,CompanyName,Sculpture,CompanyPerson,UserName,UserPassword,Introduce,CompanyAddress,CompanyType,Range,RegisteredAddress,Condition,Time,Capital,Website) {
     return Company.create({

@@ -261,6 +261,35 @@ router.post('/companylogin',function (req,res){
         }
     })
 })
+//company注册
+router.post('/companyregister',function (req,res) {
+    //在数据库中查找请求注册的UserName账号 手机号)是否存在
+    // console.log(req.body)
+    let{CompanyName,CompanyPerson,UserName,UserPassword} = req.body
+    console.log(CompanyName,CompanyPerson,UserName,UserPassword)
+    //查询数据库中是否有该注册的账号以及公司
+    Company.Companyfind({where:{
+            CompanyName: CompanyName,
+            UserName: UserName
+        }}).then(result => {
+        console.log(result)
+        if (!result){
+            //不存在可以注册
+            Company.Companycreateregister(CompanyName,CompanyPerson,UserName,UserPassword).then(() => {
+                res.send({
+                    code:0,
+                    msg:'注册成功！'
+                })
+            })
+        }else {
+            // 账号存在
+            res.send({
+                code:-1,
+                msg:'注册失败！ 该账号或公司名可能已被注册'
+            })
+        }
+    })
+})
 // student登录
 router.post('/studentlogin',function (req,res) {
     //在数据库表中查找 'number' 'password'
