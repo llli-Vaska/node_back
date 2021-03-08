@@ -2,7 +2,7 @@
 const express = require('express')
 const router = express.Router()
 const fs = require('fs')
-const crypto = require('crypto');
+require('crypto');
 //admin表
 const Admin = require('../database/models/Admin')
 //student表
@@ -21,6 +21,64 @@ const jwt = require('jsonwebtoken')
 const multer  = require('multer')
 const { sequelize } = require('../database/init')
 const {Op} = require("sequelize");
+//取消收藏
+router.post('/cancelcollection',function (req,res) {
+    /*
+   * number:所登录账号
+   * id：要取消的职位信息id
+   * */
+    let number = req.body.number//登录用户账号
+    let id = req.body.id //所要收藏的职位id
+    Student.findStudentid(number).then(result =>{
+        let student_id = result.id//登录用户id
+        //删除该账号所收藏的 将要取消收藏的职位信息 （删除一条collection表的信息）
+        Collection.CollectionDelete(student_id,id).then(result => {
+            res.send({
+                msg:'取消收藏成功！',
+                code:0
+            })
+        })
+    })
+})
+//添加收藏
+router.post('/addcollection',function (req,res){
+    /*
+    * number:所登录账号
+    * id:要收藏的职位信息id
+    * */
+    //获取要收藏的职位信息id 以及收藏的用户id
+        //通过登录账号number 查询该登录账号的id
+    // console.log(req.body.number)
+    // console.log(req.body.id)
+    let number = req.body.number//登录用户账号
+    let id = req.body.id //所要收藏的职位id
+    //查询学生用户id
+    Student.findStudentid(number).then(result => {
+        // console.log(result)//登录用户id
+        let student_id = result.id
+        //添加用户id 和 职位id到collection表
+        //查询该职位是否已经被该用户收藏
+    Collection.findCollectionExist(student_id,id).then(result => {
+        // console.log(result)
+        if (result){
+            res.send({
+                msg:'该职位已被收藏',
+                code:-1
+            })
+        }else {
+            Collection.Collectioncreate(student_id,id).then(() =>{
+                // console.log(result)
+                res.send({
+                    msg:'添加成功',
+                    code:0
+                })
+            })
+        }
+    })
+
+
+    })
+})
 // 所登录账号的已收藏的职位信息
 router.post('/collection',function (req,res) {
     //通过登录账号 查询该登录账号的id
@@ -28,11 +86,13 @@ router.post('/collection',function (req,res) {
     let number = req.body.number
     Student.findStudentid(number).then(result => {
         console.log(result)
+        //在收藏表中通过上面查询到的用户id 去查询收藏表中用户对应收藏的职位id
         Collection.findCollectionid(result.id).then(result => {
             let list = []
             let result2 = []
             for (let i =0;i <= result.length - 1;i++){
                 list[i] = result[i].position_collect_id
+                //通过查询到的职位id 到position表中查询其对应id的职位信息
                 Position.findPositioncollected(list[i]).then(result => {
                     result2[i] = result
                 })
@@ -237,7 +297,7 @@ router.post('/company', function (req,res) {
 //company登录
 router.post('/companylogin',function (req,res){
     //在数据库表中查找 'UserName' 'UserPassword'
-    let {UserName,UserPassword} = req.body
+    let {UserName,UserPassword} = req.body.ruleForm
     console.log(UserName,UserPassword)
     Company.Companyfind({where:{
             UserName:UserName,
@@ -300,7 +360,7 @@ router.post('/studentlogin',function (req,res) {
      Student.findStudentlogin(studentname,studentpassword).then(result => {
          console.log(result)
          let {number,password} = result
-         if (number ===studentname && password === studentpassword) {
+         if (number === studentname && password === studentpassword) {
              //生成token
              const studenttoken = jwt.sign({result},"abc")
              // console.log(studenttoken)
@@ -310,9 +370,9 @@ router.post('/studentlogin',function (req,res) {
              res.send({code:-1,msg:'登录失败'})
              console.log('登录失败')
          }
-         })
 
-})
+            })
+        })
 // student注册接口
 router.post('/studentregister',function (req,res){
         //在数据库中查找请求注册的number(账号 学号)是否存在
@@ -503,6 +563,7 @@ router.post('/adoptrefuse', function (req,res) {
 router.post('/adoptposition', function (req,res) {
     Position.Positionadopt().then(result => {
         res.send(result)
+        // console.log(result)
     })
 })
 //查询通过审核的position 分页

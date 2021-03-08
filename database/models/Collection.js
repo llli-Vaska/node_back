@@ -30,9 +30,32 @@ exports.findCollectionid = function (result) {
         })
 
 }
-
-
-
+//查询该职位是否已经被该用户收藏
+exports.findCollectionExist = function (student_id,position_collect_id) {
+    return Collection.findOne({
+        where:{
+            student_id:student_id,
+            position_collect_id:position_collect_id
+        }
+    })
+}
+//添加收藏
+exports.Collectioncreate = function (student_id,position_collect_id) {
+    return Collection.create({
+        student_id: student_id,
+        position_collect_id: position_collect_id
+    })
+}
+//取消收藏
+//单条删除
+exports.CollectionDelete = function (student_id,position_collect_id) {
+    return Collection.destroy({
+        where :{
+            student_id: student_id,
+            position_collect_id: position_collect_id
+        }
+    })
+}
 Collection.sync().then(() => {
     console.log('collection表模型已经同步')
 });
