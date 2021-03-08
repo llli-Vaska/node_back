@@ -21,6 +21,38 @@ const jwt = require('jsonwebtoken')
 const multer  = require('multer')
 const { sequelize } = require('../database/init')
 const {Op} = require("sequelize");
+//判断该职位是否收藏
+router.post('/judgecollection',function (req,res) {
+    /*
+  * number:所登录账号
+  * id：职位信息id
+  */
+    let number = req.body.number//登录用户账号
+    let id = req.body.id //所要判断的职位id
+    //查询学生用户id
+    Student.findStudentid(number).then(result => {
+        //登录用户id
+        let student_id = result.id
+        //查询该职位是否已经被该用户收藏
+        Collection.findCollectionExist(student_id,id).then(result => {
+            /*
+            * code为0表示该职位未被收藏
+            * code为1表示该职位已被收藏
+            */
+            if (result){
+                res.send({
+                    msg:'该职位已被收藏',
+                    code:1
+                })
+            }else {
+               res.send({
+                   msg:'该职位未被收藏',
+                   code:0
+               })
+            }
+        })
+    })
+})
 //取消收藏
 router.post('/cancelcollection',function (req,res) {
     /*
