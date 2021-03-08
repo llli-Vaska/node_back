@@ -1,7 +1,6 @@
 ***本文档由 Rap2 (https://github.com/thx/rap2-delos) 生成***
 
-
-***生成日期：2021-03-05 07:54:07***
+***生成日期：2021-03-08 11:01:03***
 
 # 仓库：校园招聘平台
 ## 模块：公司信息模块
@@ -291,5 +290,49 @@
 ```
 ├─ code: Number  
 └─ msg: String  
+
+```
+
+
+### 接口：添加收藏
+* 地址：http://p373196l49.wicp.vip/addcollection
+* 类型：POST
+* 状态码：200
+* 简介：当code为-1时说明改职位已经被收藏
+* 请求接口格式：
+
+```
+├─ number: String (必选) (登录用户的账号（学号）)
+└─ id: String  (所添加职位的id)
+
+```
+
+* 返回接口格式：
+
+```
+├─ msg: String  
+└─ code: Number  
+
+```
+
+
+### 接口：取消收藏
+* 地址：http://p373196l49.wicp.vip/cancelcollection
+* 类型：POST
+* 状态码：200
+* 简介：无
+* 请求接口格式：
+
+```
+├─ number: String  (用户登录账号（学号）)
+└─ id: String  (所要取消收藏的职位信息id)
+
+```
+
+* 返回接口格式：
+
+```
+├─ msg: String  
+└─ code: Number  
 
 ```
