@@ -135,6 +135,16 @@ exports.Positionreviewe = function () {
         }
     })
 }
+//查询审核中的position page
+exports.Positionreviewepage = function (offset,limit) {
+    return Position.findAll({
+        offset: offset,
+        limit: limit,
+        where: {
+            state: '申请中'
+        }
+    })
+}
 //查询通过审核的position
 exports.Positionadopt = function () {
     return Position.findAll({
@@ -143,9 +153,29 @@ exports.Positionadopt = function () {
         }
     })
 }
+//查询通过审核的position page
+exports.Positionadoptpage = function (offset,limit) {
+    return Position.findAll({
+        offset: offset,
+        limit: limit,
+        where: {
+            state: '审核通过'
+        }
+    })
+}
 //查询审核未通过的position
 exports.Positionfailed = function () {
     return Position.findAll({
+        where: {
+            state: '未通过审核'
+        }
+    })
+}
+//查询审核未通过的position page
+exports.Positionfailedpage = function (offset,limit) {
+    return Position.findAll({
+        offset: offset,
+        limit: limit,
         where: {
             state: '未通过审核'
         }
