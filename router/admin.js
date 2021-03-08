@@ -2,6 +2,7 @@
 const express = require('express')
 const router = express.Router()
 const fs = require('fs')
+const crypto = require('crypto');
 //admin表
 const Admin = require('../database/models/Admin')
 //student表
@@ -481,8 +482,9 @@ router.post('/deletejfe',function (req,res){
 
 //admin编辑修改学生信息
 router.post('/editstudent', function (req,res) {
-    // console.log(req.body)
-    Student.Studentupdate(req.body.number,req.body.name,req.body.sex,req.body.phone,req.body.password,req.body.department,req.body.major)
+
+
+    Student.Studentupdate(req.body.id,req.body.number,req.body.name,req.body.sex,req.body.phone,req.body.password,req.body.department,req.body.major)
     res.send({
         msg:'编辑成功',
         code: 0
@@ -518,7 +520,7 @@ router.post('/failedposition', function (req,res) {
 //admin编辑修改企业信息
 router.post('/editcompany', function (req,res) {
     // console.log(req.body)
-    Company.Companyupdate(req.body.Icon,req.body.CompanyName,req.body.Sculpture,req.body.CompanyPerson,req.body.UserName,req.body.UserPassword,req.body.CompanyAddress,req.body.CompanyType,req.body.RegisteredAddress,req.body.Condition,req.body.Time,req.body.Capital,req.body.Website)
+    Company.Companyupdate(req.body.id,req.body.Icon,req.body.CompanyName,req.body.Sculpture,req.body.CompanyPerson,req.body.UserName,req.body.UserPassword,req.body.CompanyAddress,req.body.CompanyType,req.body.RegisteredAddress,req.body.Condition,req.body.Time,req.body.Capital,req.body.Website)
     res.send({
         msg:'编辑成功',
         code: 0

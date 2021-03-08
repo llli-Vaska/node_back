@@ -198,7 +198,7 @@ exports.Studentupdate = function (id,number,name,sex,phone,password,department,m
         department: department,
         major: major
     },{
-        'where': {'id' : id }
+        where: {id : id }
     })
 }
 
