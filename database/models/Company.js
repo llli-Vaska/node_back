@@ -292,25 +292,25 @@ exports.Companycreate = function (Icon,CompanyName,Sculpture,CompanyPerson,UserN
 }
 
 //修改company表
-exports.Companyupdate = function (id,Icon,CompanyName,Sculpture,CompanyPerson,UserName,UserPassword,Introduce,CompanyAddress,CompanyType,Range,RegisteredAddress,Condition,Time,Capital,Website) {
+exports.Companyupdate = function (e) {
     return Company.update({
-        Icon: Icon, //公司图标
-        CompanyName: CompanyName, //公司名
-        Sculpture: Sculpture, //法人代表头像
-        CompanyPerson: CompanyPerson, //法人代表
-        UserName: UserName, //账号
-        UserPassword: UserPassword, //密码
-        Introduce: Introduce, //公司介绍
-        CompanyAddress: CompanyAddress, //公司地址
-        CompanyType: CompanyType, //公司类型
-        Range: Range, //经营范围
-        RegisteredAddress: RegisteredAddress, //注册地址
-        Condition: Condition, //经营状态
-        Time: Time, //成立时间
-        Capital: Capital, //注册资本
-        Website:Website, //公司网站
+        Icon: e.Icon, //公司图标
+        CompanyName: e.CompanyName, //公司名
+        Sculpture: e.Sculpture, //法人代表头像
+        CompanyPerson: e.CompanyPerson, //法人代表
+        UserName: e.UserName, //账号
+        UserPassword: e.UserPassword, //密码
+        Introduce: e.Introduce, //公司介绍
+        CompanyAddress: e.CompanyAddress, //公司地址
+        CompanyType: e.CompanyType, //公司类型
+        Range: e.Range, //经营范围
+        RegisteredAddress: e.RegisteredAddress, //注册地址
+        Condition: e.Condition, //经营状态
+        Time: e.Time, //成立时间
+        Capital: e.Capital, //注册资本
+        Website:e.Website, //公司网站
     },{
-        'where': {'id' : id }
+        where: {id : e.id }
     })
 }
 //单条删除
@@ -336,7 +336,19 @@ exports.CompanyDelete = function (Icon,CompanyName,Sculpture,CompanyPerson,UserN
     })
 }
 
-
+// //单条修改法人图片
+// exports.Companyupdate2 = function (CompanyName,Sculpture) {
+//     return Company.update({
+//         // Icon: Icon, //公司图标
+//
+//         Sculpture: Sculpture, //法人代表头像
+//
+//     },{
+//         where:{
+//         CompanyName: CompanyName, //公司名
+//     }
+//     })
+// }
 Company.sync().then(() => {
     console.log('company表模型已经同步')
 });

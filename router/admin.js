@@ -253,6 +253,7 @@ let storage = multer.diskStorage({
 // 使用磁盘引擎的配置调用方法
 let upload = multer({ storage: storage })
 // 上传文件路由,使用single 方法接收前端 图片的name属性是'logo'的图片,保存到req.file
+//图片上传
 router.post("/upload", upload.single('fr'), (req, res) => {
     // console.log(req.file)
     // console.log(req)
@@ -261,7 +262,7 @@ router.post("/upload", upload.single('fr'), (req, res) => {
     let imgUrl = 'http://p373196l49.wicp.vip/'+`img/${name}`
     res.send({ err: 0, msg: "ok", imgUrl, name})
 })
-// -----------------------------
+// --------------简历上传---------------
 let resumestorage = multer.diskStorage({
     destination: function(req, file, cb) {
         //    指定文件存放路径
@@ -285,21 +286,30 @@ router.post('/upresume', upresume.single('resume'), (req,res) => {
     let resumeUrl = 'http://p373196l49.wicp.vip/'+`resume/${name}`
     res.send({err: 0, msg: "ok", resumeUrl, name})
 })
+
+
+
 //--------------------------------
 
 //删除本地图片文件
-router.post('/deletepicture', function (req,res) {
-    let name = req.body.response.name
-    // console.log(req.body.response.name)
-    fs.unlink('./public/img/'+name, function (err) {
-        if (err) {
-            console.log(err)
-        }else {
-            console.log('删除成功')
-        }
-
-    })
-})
+// router.post('/deletepicture', function (req,res) {
+//     let name = req.body.response.name
+//     // console.log(req.body.response.name)
+//     // let allname = req.body
+//     console.log(req.body)
+//     //修改法人图片
+//             fs.unlink('./public/img/'+name + '.png', () => {
+//                 res.send({
+//                     msg:'删除成功'
+//                 })
+//             })
+//     /**
+//      * 因为在点击删除后 其url为空 所以点击确认后直接就在数据库中更改为空
+//      * */
+//
+//
+//
+// })
 //职位表position分页查询
 router.post('/examine', function (req, res) {
     Position.findExamine(req.body.offset,req.body.limit).then(result => {
@@ -508,15 +518,20 @@ router.post('/addstudent', function (req, res) {
 //admin添加公司企业
 router.post('/addcompany', function (req, res) {
     console.log(req.body)
-    Company.Companycreate(req.body.Icon,req.body.CompanyName,req.body.Sculpture,req.body.CompanyPerson,req.body.UserName,req.body.UserPassword,req.body.Introduce,req.body.CompanyAddress,req.body.CompanyType,req.body.Range,req.body.RegisteredAddress,req.body.Condition,req.body.Time,req.body.Capital,req.body.Website).then(res => {
-        console.log(res)
+    Company.Companycreate(req.body.Icon,req.body.CompanyName,req.body.Sculpture,req.body.CompanyPerson,req.body.UserName,req.body.UserPassword,req.body.Introduce,req.body.CompanyAddress,req.body.CompanyType,req.body.Range,req.body.RegisteredAddress,req.body.Condition,req.body.Time,req.body.Capital,req.body.Website).then(result => {
+        console.log(result)
+        res.send({
+            msg:'添加成功',
+            code: 0
+        })
     }).catch(err => {
         console.log(err)
+        res.send({
+            msg:'添加失败',
+            code: -1
+        })
     })
-    res.send({
-        msg:'添加成功',
-        code: 0
-    })
+
 })
 
 //admin删除单挑学生用户信息
@@ -638,12 +653,15 @@ router.post('/failedpositionpage', function (req, res) {
 })
 //admin编辑修改企业信息
 router.post('/editcompany', function (req,res) {
-    // console.log(req.body)
-    Company.Companyupdate(req.body.id,req.body.Icon,req.body.CompanyName,req.body.Sculpture,req.body.CompanyPerson,req.body.UserName,req.body.UserPassword,req.body.CompanyAddress,req.body.CompanyType,req.body.RegisteredAddress,req.body.Condition,req.body.Time,req.body.Capital,req.body.Website)
-    res.send({
-        msg:'编辑成功',
-        code: 0
+    console.log(req.body)
+    Company.Companyupdate(req.body).then(result => {
+        console.log(result)
+        res.send({
+            msg:'编辑成功',
+            code: 0
+        })
     })
+
 })
 
 //查询student 表
