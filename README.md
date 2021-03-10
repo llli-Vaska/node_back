@@ -1,6 +1,8 @@
 ***本文档由 Rap2 (https://github.com/thx/rap2-delos) 生成***
 
-***生成日期：2021-03-08 14:06:23***
+***本项目仓库：[http://rap2.taobao.org/repository/editor?id=276416](http://rap2.taobao.org/repository/editor?id=276416) ***
+
+***生成日期：2021-03-10 12:40:24***
 
 # 仓库：校园招聘平台
 ## 模块：公司信息模块
@@ -356,5 +358,93 @@
 ```
 ├─ msg: String  
 └─ code: Number  
+
+```
+
+
+### 接口：简历上传接口
+* 地址：http://p373196l49.wicp.vip/resumemessage
+* 类型：POST
+* 状态码：200
+* 简介：code为-1时说明已经投递过该职位
+* 请求接口格式：
+
+```
+├─ DataForm: Object 
+│  ├─ number: String  (登录用户账号)
+│  └─ id: Number  (投递的该职位id)
+└─ url: String  (url = this.resumeUrl)
+
+```
+
+* 返回接口格式：
+
+```
+├─ code: Number  
+└─ msg: String  
+
+```
+
+
+### 接口：学生用户查询已投递的职位
+* 地址：http://p373196l49.wicp.vip/sendedposition
+* 类型：POST
+* 状态码：200
+* 简介：注意返回的是一个数组对象
+* 请求接口格式：
+
+```
+└─ number: String  (登录账号)
+
+```
+
+* 返回接口格式：
+
+```
+└─ __root__: Array 
+   ├─ id: Number  
+   ├─ TitlePosition: String  
+   ├─ CompanyName: String  
+   ├─ Degree: String  
+   ├─ Salary: String  
+   ├─ Welfare: String  
+   ├─ Technology: String  
+   ├─ Duty: String  
+   ├─ Region: String  
+   ├─ Number: String  
+   └─ state: String  
+
+```
+
+
+### 接口：企业查询投递了该公司的职位的用户简历
+* 地址：http://p373196l49.wicp.vip/companyresume
+* 类型：POST
+* 状态码：200
+* 简介：注意返回的是一个数组对象|resume_url是用户简历的url地址
+* 请求接口格式：
+
+```
+└─ UserName: String  (公司企业登录账号)
+
+```
+
+* 返回接口格式：
+
+```
+└─ __root__: Array 
+   ├─ id: Number  
+   ├─ student_id: String  
+   ├─ position_id: String  
+   ├─ resume_url: String  (用户简历的url地址)
+   ├─ company_id: String  
+   ├─ number: String  
+   ├─ name: String  
+   ├─ sex: String  
+   ├─ phone: String  
+   ├─ password: String  
+   ├─ department: String  
+   ├─ major: String  
+   └─ studenttoken: String  
 
 ```

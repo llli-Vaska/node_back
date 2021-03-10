@@ -70,6 +70,13 @@ const Student = sequelize.define('student', {
 exports.Studentfind = function (e) {
     return Student.findOne(e)
 }
+exports.Studentfindidall = function (id) {
+    return Student.findAll({
+        where:{
+            id:id
+        }
+    })
+}
 //单条删除
 exports.StudentDelete = function (number,name,sex,phone,password,department,major) {
     return Student.destroy({

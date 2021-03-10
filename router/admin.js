@@ -17,6 +17,8 @@ const PublicLecture = require('../database/models/PublicLecture')
 const JobFair = require('../database/models/JobFair')
 //collection表
 const Collection = require('../database/models/Collection')
+//ResumeUpload表
+const ResumeUpload = require('../database/models/ResumeUpload')
 const jwt = require('jsonwebtoken')
 const multer  = require('multer')
 const { sequelize } = require('../database/init')
@@ -278,19 +280,141 @@ let resumestorage = multer.diskStorage({
     }
 })
 let upresume = multer({ storage: resumestorage })
-//上传简历文件
-router.post('/upresume', upresume.single('resume'), (req,res) => {
-    console.log(req.file)
-    console.log(req)
+//上传简历文件(返回给客户端url)
+        router.post('/upresume', upresume.single('resume'), (req,res) => {
+    // console.log(req.file)
+    // console.log(file)
+    // console.log(req)
     let name = req.file.filename
+    let docname = req.file.originalname //文件名
     let resumeUrl = 'http://p373196l49.wicp.vip/'+`resume/${name}`
-    res.send({err: 0, msg: "ok", resumeUrl, name})
+    res.send({err: 0, msg: "ok", resumeUrl,docname })
 })
 
-
-
 //--------------------------------
+//添加简历信息到数据库
+router.post('/resumemessage',function (req,res){
+    console.log(req.body)
+    //用户账号
+    let {number,id} = req.body.DataForm
+    let resume_url = req.body.resumeUrl
+    // console.log(number)
+    // console.log(id)
+    Student.findStudentid(number).then(result => {
+        // console.log(result.id)//用户id
+        //判断该用户是否在该职业已经投递过简历
+        let student_id = result.id
+        ResumeUpload.findResumeUploadExist(student_id,id).then(result => {
+            if (result){
+                res.send({
+                    code:-1,
+                    msg:'该职位你已投递过简历'
+                })
+            }else{
+                //通过position_id查询公司名
+                Position.Positionfind({attributes:['CompanyName'],where:{
+                    id:id
+                    }}).then(result => {
+                    // console.log(result.CompanyName)
+                    let CompanyName = result.CompanyName
+                    //再通过公司名查询公司id
+                    Company.Companyfind({attributes:['id'],where:{
+                            CompanyName: CompanyName
+                        }}).then(result =>{
+                            let company_id = result.id
+                        console.log(company_id)
+                        ResumeUpload.ResumeUploadAdd(student_id,id,resume_url,company_id).then(result => {
+                            // console.log(result)
+                            res.send({
+                                code:0,
+                                msg:'简历上传成功'
+                            })
+                        })
+                    })
 
+                })
+
+            }
+        })
+
+
+    })
+})
+//学生用户查看已投递的职位信息
+router.post('/sendedposition',function (req,res){
+    let number = req.body.number
+    Student.findStudentid(number).then(result => {
+            let student_id = result.id//学生用户id
+            ResumeUpload.ResumeUploadfindall({where:{
+                    student_id:student_id
+                }}).then(result => {
+                let list = []
+                let calse = []
+                for (let i = 0; i <= result.length - 1; i++) {
+                    list[i] = result[i].position_id
+                    Position.Positionfindid(list[i]).then(result =>{
+                        // console.log(result)
+                        calse[i] = result
+                    })
+                }
+                setTimeout(()=>{
+                    res.send(calse)
+                },100)
+            })
+
+    })
+
+})
+//企业查询投递了该公司的职位简历
+router.post('/companyresume',function (req,res){
+    console.log(req.body.UserName)
+    let UserName = req.body.UserName //公司企业登录账号
+   //查询该公司的id
+    Company.Companyfind({where:{
+            UserName:UserName
+        }}).then(result =>{
+            //获取该公司id
+        let company_id = result.id
+        //判断该公司是否有投递进来的简历信息
+        ResumeUpload.ResumeUploadfindall({where:{
+            company_id:company_id
+            }}).then(result =>{
+                if (!result){
+                    res.send({
+                        code:-1,
+                        msg:'暂无简历投递'
+                    })
+            }else {
+                    let list1 = []
+                    let list2 = []
+                    // let list= null
+                    let id = []
+                    for (let i =0 ; i <= result.length - 1;i++){
+                        id[i] = result[i].student_id
+                        list1[i] = {...result[i]["dataValues"]}
+                    }
+                    for (let j =0 ;j <= result.length - 1;j++){
+                        Student.Studentfindidall(id[j]).then(result => {
+                            list2[j] = result[0]
+                        })
+                    }
+                    setTimeout(()=>{
+                        // console.log(list)
+                        let list = list1.map((item,index) => {
+                            return {...item, ...list2[index]['dataValues']};
+                        });
+                        setTimeout(()=>{
+                            res.send(list)
+                        },300)
+
+
+                    },200)
+
+
+                }
+        })
+    })
+})
 //删除本地图片文件
 // router.post('/deletepicture', function (req,res) {
 //     let name = req.body.response.name
@@ -326,7 +450,17 @@ router.post('/position',function (req,res) {
         res.send(result)
     })
 })
-
+//通过职位表的公司名来查询对应的公司表信息
+router.post('/positionselectcompany',function (req,res){
+    //获取公司名
+    // console.log(req.body.CompanyName)
+    let PositionCompanyName = req.body.CompanyName
+    Company.Companyfind({where:{
+        CompanyName: PositionCompanyName
+        }}).then(result => {
+        console.log(result)
+    })
+})
 //公司表
 router.post('/company', function (req,res) {
     Company.findCompanyall({

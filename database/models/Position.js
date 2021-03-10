@@ -82,6 +82,17 @@ const Position =  sequelize.define('position', {
         defaultValue: '申请中'
     }
 })
+exports.Positionfind = function (e) {
+    return Position.findOne(e)
+}
+exports.Positionfindid = function (id) {
+    return Position.findOne({
+        where:{
+            id:id
+        }
+    })
+}
+
 
 //查询position表 用户已收藏的职业position
 exports.findPositioncollected = function (result) {
