@@ -720,16 +720,26 @@ router.post('/deletejfe',function (req,res){
         })
     })
 })
-
+//student辑修改学生信息(账号不能修改)
+router.post('/studentedit',function (req,res){
+    Student.Studentupdatestudent(req.body.number,req.body.name,req.body.sex,req.body.phone,req.body.password,req.body.department,req.body.major).then(result => {
+        res.send({
+            msg:'编辑成功',
+            code: 0
+        })
+    })
+})
 //admin编辑修改学生信息
 router.post('/editstudent', function (req,res) {
 
 
-    Student.Studentupdate(req.body.id,req.body.number,req.body.name,req.body.sex,req.body.phone,req.body.password,req.body.department,req.body.major)
-    res.send({
-        msg:'编辑成功',
-        code: 0
+    Student.Studentupdate(req.body.id,req.body.number,req.body.name,req.body.sex,req.body.phone,req.body.password,req.body.department,req.body.major).then(result => {
+        res.send({
+            msg:'编辑成功',
+            code: 0
+        })
     })
+
 })
 //admin修改审核状态adopt refuse
 router.post('/adoptrefuse', function (req,res) {
