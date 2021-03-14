@@ -197,7 +197,6 @@ exports.findStudent = function (offset,limit) {
 //student修改student表
 exports.Studentupdatestudent = function (number,name,sex,phone,password,department,major) {
     return Student.update({
-
         name: name,
         sex:sex,
         phone: phone,

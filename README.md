@@ -2,7 +2,7 @@
 
 ***本项目仓库：[http://rap2.taobao.org/repository/editor?id=276416](http://rap2.taobao.org/repository/editor?id=276416) ***
 
-***生成日期：2021-03-14 08:01:56***
+***生成日期：2021-03-14 08:50:24***
 
 # 仓库：校园招聘平台
 ## 模块：公司信息模块
@@ -471,19 +471,53 @@
 * 地址：http://p373196l49.wicp.vip/studentedit
 * 类型：POST
 * 状态码：200
-* 简介：无
+* 简介：账号（不能修改）!!!!!
 * Rap地址：[http://rap2.taobao.org/repository/editor?id=276416&mod=440030&itf=1904211](http://rap2.taobao.org/repository/editor?id=276416&mod=440030&itf=1904211)
 * 请求接口格式：
 
 ```
 └─ row: Object 
-   ├─ number: String  (账号（不能修改）【需要通过该学号到数据库里面进行索引】)
+   ├─ number: Number  ((账号（不能修改）【需要通过该学号到数据库里面进行索引】))
    ├─ name: String  (学生姓名)
    ├─ sex: String  (性别)
    ├─ phone: String  (电话)
    ├─ password: String  (密码)
    ├─ department: String  (系别)
    └─ major: String  (专业)
+
+```
+
+* 返回接口格式：
+
+```
+├─ msg: String  
+└─ code: Number  
+
+```
+
+
+### 接口：企业公司修改公司信息
+* 地址：http://p373196l49.wicp.vip/companyedit
+* 类型：POST
+* 状态码：200
+* 简介：不能修改上传各类图片，用户账号无法更改/请求参数初始值应该为账号修改前本身的信息
+* Rap地址：[http://rap2.taobao.org/repository/editor?id=276416&mod=440030&itf=1904244](http://rap2.taobao.org/repository/editor?id=276416&mod=440030&itf=1904244)
+* 请求接口格式：
+
+```
+├─ UserName: String  (登录账号【不能修改！！！】（通过账号在数据库中索引）)
+├─ CompanyName: String  (公司名)
+├─ CompanyPerson: String  (公司法人)
+├─ UserPassword: String  (登录密码)
+├─ Introduce: String  (公司介绍)
+├─ CompanyAddress: String  (公司地址)
+├─ CompanyType: String  (公司类型)
+├─ Range: String  (经营范围)
+├─ RegisteredAddress: String  (注册地址)
+├─ Condition: String  (经营状态)
+├─ Time: String  (成立时间)
+├─ Capital: String  (注册资本)
+└─ Website: String  (公司网站)
 
 ```
 

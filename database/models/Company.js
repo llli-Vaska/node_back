@@ -290,7 +290,26 @@ exports.Companycreate = function (Icon,CompanyName,Sculpture,CompanyPerson,UserN
         Website:Website, //公司网站
     })
 }
-
+//company修改company表
+exports.Companyupdatecompany = function (UserName,CompanyName,CompanyPerson,UserPassword,Introduce,CompanyAddress,CompanyType,Range,RegisteredAddress,Condition,Time,Capital,Website) {
+    return Company.update({
+        CompanyName: CompanyName, //公司名
+        CompanyPerson: CompanyPerson, //法人代表
+        UserPassword: UserPassword, //密码
+        Introduce: Introduce, //公司介绍
+        CompanyAddress: CompanyAddress, //公司地址
+        CompanyType: CompanyType, //公司类型
+        Range: Range, //经营范围
+        RegisteredAddress: RegisteredAddress, //注册地址
+        Condition: Condition, //经营状态
+        Time: Time, //成立时间
+        Capital: Capital, //注册资本
+        Website:Website, //公司网站
+    },{
+        where: {UserName: UserName, //账号
+        }
+    })
+}
 //修改company表
 exports.Companyupdate = function (e) {
     return Company.update({

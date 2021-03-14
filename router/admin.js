@@ -723,6 +723,7 @@ router.post('/deletejfe',function (req,res){
 //student辑修改学生信息(账号不能修改)
 router.post('/studentedit',function (req,res){
     Student.Studentupdatestudent(req.body.number,req.body.name,req.body.sex,req.body.phone,req.body.password,req.body.department,req.body.major).then(result => {
+        // console.log(result)
         res.send({
             msg:'编辑成功',
             code: 0
@@ -795,6 +796,19 @@ router.post('/failedpositionpage', function (req, res) {
     })
 
 })
+//company编辑修改企业信息
+router.post('/companyedit', function (req,res) {
+    console.log(req.body)
+    Company.Companyupdatecompany(req.body.UserName,req.body.CompanyName,req.body.CompanyPerson,req.body.UserPassword,req.body.Introduce,req.body.CompanyAddress,req.body.CompanyType,req.body.Range,req.body.RegisteredAddress,req.body.Condition,req.body.Time,req.body.Capital,req.body.Website).then(result => {
+        console.log(result)
+        res.send({
+            msg:'编辑成功',
+            code: 0
+        })
+    })
+
+})
+
 //admin编辑修改企业信息
 router.post('/editcompany', function (req,res) {
     console.log(req.body)
