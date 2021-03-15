@@ -2,7 +2,7 @@
 
 ***本项目仓库：[http://rap2.taobao.org/repository/editor?id=276416](http://rap2.taobao.org/repository/editor?id=276416) ***
 
-***生成日期：2021-03-14 08:50:24***
+***生成日期：2021-03-15 06:31:36***
 
 # 仓库：校园招聘平台
 ## 模块：公司信息模块
@@ -526,5 +526,34 @@
 ```
 ├─ msg: String  
 └─ code: Number  
+
+```
+
+
+### 接口：传入学生登录账号返回该账号的信息
+* 地址：http://p373196l49.wicp.vip/studentoneselect
+* 类型：POST
+* 状态码：200
+* 简介：无
+* Rap地址：[http://rap2.taobao.org/repository/editor?id=276416&mod=440030&itf=1904889](http://rap2.taobao.org/repository/editor?id=276416&mod=440030&itf=1904889)
+* 请求接口格式：
+
+```
+└─ number: String  
+
+```
+
+* 返回接口格式：
+
+```
+├─ id: Number  
+├─ number: String  
+├─ name: String  
+├─ sex: String  
+├─ phone: String  
+├─ password: String  
+├─ department: String  
+├─ major: String  
+└─ studenttoken: String  
 
 ```

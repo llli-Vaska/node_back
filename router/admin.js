@@ -527,6 +527,17 @@ router.post('/companyregister',function (req,res) {
         }
     })
 })
+//传入学生登录账号返回该账号的信息
+router.post('/studentoneselect',function (req,res){
+    let number = req.body.number//获取登录账号
+    Student.Studentfind({where:{
+        number:number
+        }}).then(result => {
+        console.log(result)
+            res.send(result)
+    })
+
+})
 // student登录
 router.post('/studentlogin',function (req,res) {
     //在数据库表中查找 'number' 'password'
