@@ -198,7 +198,14 @@ PublicLecture.belongsTo(Company,{foreignKey:'CompanyId',targetKey:'CompanyName'}
 exports.Companyfind = function (e) {
     return Company.findOne(e)
 }
-
+//通过公司名查询公司信息
+exports.positioncompanyinformation = function (CompanyName){
+    return Company.findOne({
+        where:{
+            CompanyName:CompanyName
+        }
+    })
+}
 //查询company + publiclecture两表相关信息
 exports.findcplall = function (){
     return Company.findAll({

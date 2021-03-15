@@ -23,6 +23,15 @@ const jwt = require('jsonwebtoken')
 const multer  = require('multer')
 const { sequelize } = require('../database/init')
 const {Op} = require("sequelize");
+//通过职位中的公司名 来查询该公司的信息
+router.post('/positioncompanyselect',function (req,res){
+    //获取该职位的公司名
+    let CompanyName = req.body.CompanyName
+    Company.positioncompanyinformation(CompanyName).then(result => {
+        // console.log(result['dataValues'])
+        res.send(result['dataValues'])
+    })
+})
 //判断该职位是否收藏
 router.post('/judgecollection',function (req,res) {
     /*
@@ -122,6 +131,7 @@ router.post('/collection',function (req,res) {
         console.log(result)
         //在收藏表中通过上面查询到的用户id 去查询收藏表中用户对应收藏的职位id
         Collection.findCollectionid(result.id).then(result => {
+            console.log(result)
             let list = []
             let result2 = []
             for (let i =0;i <= result.length - 1;i++){

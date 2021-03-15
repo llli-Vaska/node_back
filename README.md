@@ -2,7 +2,7 @@
 
 ***本项目仓库：[http://rap2.taobao.org/repository/editor?id=276416](http://rap2.taobao.org/repository/editor?id=276416) ***
 
-***生成日期：2021-03-15 06:31:36***
+***生成日期：2021-03-15 09:31:10***
 
 # 仓库：校园招聘平台
 ## 模块：公司信息模块
@@ -555,5 +555,42 @@
 ├─ department: String  
 ├─ major: String  
 └─ studenttoken: String  
+
+```
+
+
+### 接口：通过职位中的公司名 来查询该公司的信息
+* 地址：http://p373196l49.wicp.vip/positioncompanyselect
+* 类型：POST
+* 状态码：200
+* 简介：无
+* Rap地址：[http://rap2.taobao.org/repository/editor?id=276416&mod=440030&itf=1905366](http://rap2.taobao.org/repository/editor?id=276416&mod=440030&itf=1905366)
+* 请求接口格式：
+
+```
+└─ CompanyName: String  (该职位的公司名)
+
+```
+
+* 返回接口格式：
+
+```
+├─ id: Number  
+├─ Icon: String  
+├─ CompanyName: String  
+├─ Sculpture: String  
+├─ CompanyPerson: String  
+├─ UserName: String  
+├─ UserPassword: String  
+├─ Introduce: String  
+├─ CompanyAddress: String  
+├─ CompanyType: String  
+├─ Range: String  
+├─ RegisteredAddress: String  
+├─ Condition: String  
+├─ Time: String  
+├─ Capital: String  
+├─ Website: String  
+└─ CompanyToken: Null  
 
 ```
