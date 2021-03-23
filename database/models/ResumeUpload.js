@@ -55,6 +55,8 @@ exports.findResumeUploadExist = function (student_id,position_id) {
 exports.ResumeUploadfindall = function (e) {
     return ResumeUpload.findAll(e)
 }
+
+
 ResumeUpload.sync().then(() => {
     console.log('ResumeUpload表模型已经同步')
 });

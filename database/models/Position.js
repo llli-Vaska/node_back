@@ -85,6 +85,9 @@ const Position =  sequelize.define('position', {
 exports.Positionfind = function (e) {
     return Position.findOne(e)
 }
+exports.Positionfindall = function (e) {
+    return Position.findAll(e)
+}
 exports.Positionfindid = function (id) {
     return Position.findOne({
         where:{
@@ -192,6 +195,21 @@ exports.Positionfailedpage = function (offset,limit) {
         }
     })
 }
+//company添加职位
+exports.Positioncreate = function (TitlePosition,CompanyName,Degree,Salary,Welfare,Technology,Duty,Region,Number) {
+    return Position.create({
+        TitlePosition:TitlePosition,
+        CompanyName:CompanyName,
+        Degree:Degree,
+        Salary:Salary,
+        Welfare:Welfare,
+        Technology:Technology,
+        Duty:Duty,
+        Region:Region,
+        Number:Number,
+        state:'申请中'
+    })
+}
 //修改position表
 exports.Positionupdate = function (TitlePosition,CompanyName,Degree,Salary,Welfare,Technology,Duty,Region,Number,state) {
     return Position.update({
@@ -218,7 +236,26 @@ exports.Positionupdate = function (TitlePosition,CompanyName,Degree,Salary,Welfa
              }
     })
 }
-
+//company 修改position
+//修改position表
+exports.PositionupdateCompany = function (id,TitlePosition,CompanyName,Degree,Salary,Welfare,Technology,Duty,Region,Number) {
+    return Position.update({
+        TitlePosition: TitlePosition,//职位名
+        CompanyName: CompanyName,//公司名
+        Degree: Degree,//学历要求
+        Salary: Salary,//薪资
+        Welfare: Welfare,//福利待遇
+        Technology: Technology,//技术要求
+        Duty: Duty,//工作职责
+        Region: Region,//公司所在区域
+        Number: Number,//招收人数
+        state:'申请中'//审核状态
+    }, {
+        where:{
+            id:id
+        }
+        })
+}
 Position.sync().then(() => {
     console.log('position表模型已经同步')
 });

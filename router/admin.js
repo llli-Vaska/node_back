@@ -853,7 +853,82 @@ router.post('/studentall',function (req,res) {
         res.send(result)
     })
 })
+//所登录的公司企业添加职位
+router.post('/CompanyAddPosition',function (req,res){
+    console.log(req.body)
+    //获取登录账号去判断所添加的职位公司名是否是当前账号所登录的公司名
+    let UserName = req.body.UserName
+    Company.Companyfind({
+        attributes:['CompanyName'],
+        where:{
+            UserName:UserName
+        }
+    }).then(result =>{
+        // console.log(result['dataValues'].CompanyName)
+        let RegCompanyName = result['dataValues'].CompanyName //得到当前账号所登录的公司名
+        if(RegCompanyName == req.body.CompanyName){
+            console.log('公司名一致可以进行下一步！')
+            //当前账号所登录的公司名与所要添加的职位的公司名一致
+            //将职位信息添加到数据库
+            Position.Positioncreate(req.body.TitlePosition,req.body.CompanyName,req.body.Degree,req.body.Salary,req.body.Welfare,req.body.Technology,req.body.Duty,req.body.Region,req.body.Number).then(result =>{
+                // console.log(result)
+                res.send({
+                    code:0,
+                    msg:'添加成功，等待管理员审核...'
+                })
+            })
+        }else{
+            console.log('请输入账号所对应的公司名！')
+            res.send({
+                code: -1,
+                msg:'请输入账号所对应的公司名！'
+            })
+        }
 
+    })
+
+})
+//所登录的公司企业查看自己所招聘职位（通过审核的）
+router.post('/CompanyGetPosition',function (req,res){
+    //获取该公司登录账号
+    // console.log(req.body)
+    let UserName = req.body.UserName
+    // console.log(UserName)
+    //通过账号查找公司名
+    Company.Companyfind({
+        attributes:['CompanyName'],
+        where:{
+            UserName:UserName
+        }
+    }).then(result =>{
+        // console.log(result)
+        let CompanyName = result['dataValues'].CompanyName //得到当前账号所登录的公司名
+        console.log(CompanyName)
+        //再在Position表中查找有该公司名的且通过审核的职位信息
+        Position.Positionfindall({
+            where:{
+                CompanyName:CompanyName,
+                state:'审核通过'
+            }
+        }).then(result =>{
+            // console.log(result)
+            res.send(result)
+        })
+    })
+})
+//所登录的公司企业修改所招聘职位信息 （修改后还需要通过admin审核）
+router.post('/CompanyEditPosition',function (req,res){
+    //获取要修改的职位的id 以及要修改的信息（公司名不要改！！）
+    // console.log(req.body)
+    //更改该id的职位信息
+    Position.PositionupdateCompany(req.body.id,req.body.TitlePosition,req.body.CompanyName,req.body.Degree,req.body.Salary,req.body.Welfare,req.body.Technology,req.body.Duty,req.body.Region,req.body.Number).then(result => {
+        // console.log(result)
+        res.send({
+            code:0,
+            msg:'修改成功，等待管理员审核...'
+        })
+    })
+})
 
 
 

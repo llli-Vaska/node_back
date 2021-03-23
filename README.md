@@ -2,7 +2,7 @@
 
 ***本项目仓库：[http://rap2.taobao.org/repository/editor?id=276416](http://rap2.taobao.org/repository/editor?id=276416) ***
 
-***生成日期：2021-03-15 09:31:10***
+***生成日期：2021-03-23 10:06:36***
 
 # 仓库：校园招聘平台
 ## 模块：公司信息模块
@@ -10,8 +10,7 @@
 * 地址：http://p373196l49.wicp.vip/company
 * 类型：POST
 * 状态码：200
-* 简介：示例接口描述
-* Rap地址：[http://rap2.taobao.org/repository/editor?id=276416&mod=440030&itf=1877396](http://rap2.taobao.org/repository/editor?id=276416&mod=440030&itf=1877396)
+* 简介：接口描述
 * 请求接口格式：
 
 ```
@@ -47,7 +46,6 @@
 * 类型：POST
 * 状态码：200
 * 简介：无
-* Rap地址：[http://rap2.taobao.org/repository/editor?id=276416&mod=440030&itf=1877397](http://rap2.taobao.org/repository/editor?id=276416&mod=440030&itf=1877397)
 * 请求接口格式：
 
 ```
@@ -75,7 +73,6 @@
 * 类型：POST
 * 状态码：200
 * 简介：无
-* Rap地址：[http://rap2.taobao.org/repository/editor?id=276416&mod=440030&itf=1877398](http://rap2.taobao.org/repository/editor?id=276416&mod=440030&itf=1877398)
 * 请求接口格式：
 
 ```
@@ -103,7 +100,6 @@
 * 类型：POST
 * 状态码：200
 * 简介：无
-* Rap地址：[http://rap2.taobao.org/repository/editor?id=276416&mod=440030&itf=1877399](http://rap2.taobao.org/repository/editor?id=276416&mod=440030&itf=1877399)
 * 请求接口格式：
 
 ```
@@ -131,7 +127,6 @@
 * 类型：POST
 * 状态码：200
 * 简介：无
-* Rap地址：[http://rap2.taobao.org/repository/editor?id=276416&mod=440030&itf=1878458](http://rap2.taobao.org/repository/editor?id=276416&mod=440030&itf=1878458)
 * 请求接口格式：
 
 ```
@@ -159,7 +154,6 @@
 * 类型：POST
 * 状态码：200
 * 简介：无
-* Rap地址：[http://rap2.taobao.org/repository/editor?id=276416&mod=440030&itf=1878462](http://rap2.taobao.org/repository/editor?id=276416&mod=440030&itf=1878462)
 * 请求接口格式：
 
 ```
@@ -178,7 +172,6 @@
 * 类型：POST
 * 状态码：200
 * 简介：无
-* Rap地址：[http://rap2.taobao.org/repository/editor?id=276416&mod=440030&itf=1888094](http://rap2.taobao.org/repository/editor?id=276416&mod=440030&itf=1888094)
 * 请求接口格式：
 
 ```
@@ -203,7 +196,6 @@
 * 类型：POST
 * 状态码：200
 * 简介：接口具体响应数据根据postman自寻查看
-* Rap地址：[http://rap2.taobao.org/repository/editor?id=276416&mod=440030&itf=1892770](http://rap2.taobao.org/repository/editor?id=276416&mod=440030&itf=1892770)
 * 请求接口格式：
 
 ```
@@ -235,7 +227,6 @@
 * 类型：POST
 * 状态码：200
 * 简介：code为-1时为账号已被注册 即注册失败
-* Rap地址：[http://rap2.taobao.org/repository/editor?id=276416&mod=440030&itf=1893643](http://rap2.taobao.org/repository/editor?id=276416&mod=440030&itf=1893643)
 * 请求接口格式：
 
 ```
@@ -263,7 +254,6 @@
 * 类型：POST
 * 状态码：200
 * 简介：无
-* Rap地址：[http://rap2.taobao.org/repository/editor?id=276416&mod=440030&itf=1893765](http://rap2.taobao.org/repository/editor?id=276416&mod=440030&itf=1893765)
 * 请求接口格式：
 
 ```
@@ -287,7 +277,6 @@
 * 类型：POST
 * 状态码：200
 * 简介：注册失败 返回code:-1
-* Rap地址：[http://rap2.taobao.org/repository/editor?id=276416&mod=440030&itf=1893819](http://rap2.taobao.org/repository/editor?id=276416&mod=440030&itf=1893819)
 * 请求接口格式：
 
 ```
@@ -312,7 +301,6 @@
 * 类型：POST
 * 状态码：200
 * 简介：当code为-1时说明改职位已经被收藏
-* Rap地址：[http://rap2.taobao.org/repository/editor?id=276416&mod=440030&itf=1896735](http://rap2.taobao.org/repository/editor?id=276416&mod=440030&itf=1896735)
 * 请求接口格式：
 
 ```
@@ -335,7 +323,6 @@
 * 类型：POST
 * 状态码：200
 * 简介：无
-* Rap地址：[http://rap2.taobao.org/repository/editor?id=276416&mod=440030&itf=1896758](http://rap2.taobao.org/repository/editor?id=276416&mod=440030&itf=1896758)
 * 请求接口格式：
 
 ```
@@ -358,7 +345,6 @@
 * 类型：POST
 * 状态码：200
 * 简介：code为0表示未收藏，为1表示已收藏
-* Rap地址：[http://rap2.taobao.org/repository/editor?id=276416&mod=440030&itf=1896886](http://rap2.taobao.org/repository/editor?id=276416&mod=440030&itf=1896886)
 * 请求接口格式：
 
 ```
@@ -381,7 +367,6 @@
 * 类型：POST
 * 状态码：200
 * 简介：code为-1时说明已经投递过该职位
-* Rap地址：[http://rap2.taobao.org/repository/editor?id=276416&mod=440030&itf=1900617](http://rap2.taobao.org/repository/editor?id=276416&mod=440030&itf=1900617)
 * 请求接口格式：
 
 ```
@@ -406,7 +391,6 @@
 * 类型：POST
 * 状态码：200
 * 简介：注意返回的是一个数组对象
-* Rap地址：[http://rap2.taobao.org/repository/editor?id=276416&mod=440030&itf=1900930](http://rap2.taobao.org/repository/editor?id=276416&mod=440030&itf=1900930)
 * 请求接口格式：
 
 ```
@@ -438,7 +422,6 @@
 * 类型：POST
 * 状态码：200
 * 简介：注意返回的是一个数组对象|resume_url是用户简历的url地址
-* Rap地址：[http://rap2.taobao.org/repository/editor?id=276416&mod=440030&itf=1901083](http://rap2.taobao.org/repository/editor?id=276416&mod=440030&itf=1901083)
 * 请求接口格式：
 
 ```
@@ -472,7 +455,6 @@
 * 类型：POST
 * 状态码：200
 * 简介：账号（不能修改）!!!!!
-* Rap地址：[http://rap2.taobao.org/repository/editor?id=276416&mod=440030&itf=1904211](http://rap2.taobao.org/repository/editor?id=276416&mod=440030&itf=1904211)
 * 请求接口格式：
 
 ```
@@ -501,7 +483,6 @@
 * 类型：POST
 * 状态码：200
 * 简介：不能修改上传各类图片，用户账号无法更改/请求参数初始值应该为账号修改前本身的信息
-* Rap地址：[http://rap2.taobao.org/repository/editor?id=276416&mod=440030&itf=1904244](http://rap2.taobao.org/repository/editor?id=276416&mod=440030&itf=1904244)
 * 请求接口格式：
 
 ```
@@ -535,7 +516,6 @@
 * 类型：POST
 * 状态码：200
 * 简介：无
-* Rap地址：[http://rap2.taobao.org/repository/editor?id=276416&mod=440030&itf=1904889](http://rap2.taobao.org/repository/editor?id=276416&mod=440030&itf=1904889)
 * 请求接口格式：
 
 ```
@@ -564,7 +544,6 @@
 * 类型：POST
 * 状态码：200
 * 简介：无
-* Rap地址：[http://rap2.taobao.org/repository/editor?id=276416&mod=440030&itf=1905366](http://rap2.taobao.org/repository/editor?id=276416&mod=440030&itf=1905366)
 * 请求接口格式：
 
 ```
@@ -592,5 +571,96 @@
 ├─ Capital: String  
 ├─ Website: String  
 └─ CompanyToken: Null  
+
+```
+
+
+### 接口：公司企业添加招聘职位
+* 地址：http://p373196l49.wicp.vip/CompanyAddPosition
+* 类型：POST
+* 状态码：200
+* 简介：如果公司名不为登录账号所登录的公司名则可能code:-1,msg:'请输入账号所对应的公司名！'
+* 请求接口格式：
+
+```
+├─ UserName: String  (公司登录账号)
+├─ TitlePosition: String  (添加职位信息中的职位名)
+├─ CompanyName: String  (添加职位信息中的（登录账号的）公司名)
+├─ Degree: String  (添加职位信息中的学历要求)
+├─ Salary: String  (添加职位信息中的薪资)
+├─ Welfare: String  (添加职位信息中的福利)
+├─ Technology: String  (添加职位信息中的技术)
+├─ Duty: String  (添加职位信息中的工作职责)
+├─ Region: String  (添加职位信息中的区域)
+└─ Number: String  (添加职位信息中的招聘人数)
+
+```
+
+* 返回接口格式：
+
+```
+├─ code: Number  
+└─ msg: String  
+
+```
+
+
+### 接口：所登录的公司企业查看所通过审核的招聘职位
+* 地址：http://p373196l49.wicp.vip/CompanyGetPosition
+* 类型：POST
+* 状态码：200
+* 简介：无
+* 请求接口格式：
+
+```
+└─ UserName: String  (公司所登录账号)
+
+```
+
+* 返回接口格式：
+
+```
+└─ __root__: Array 
+   ├─ id: Number  
+   ├─ TitlePosition: Array : Array  
+   ├─ CompanyName: String  
+   ├─ Degree: String  
+   ├─ Salary: Array : Array  
+   ├─ Welfare: Array : Array  
+   ├─ Technology: Array : Array  
+   ├─ Duty: Array : Array  
+   ├─ Region: Array : Array  
+   ├─ Number: Array : Array  
+   └─ state: String  
+
+```
+
+
+### 接口：公司修改职位信息
+* 地址：http://p373196l49.wicp.vip/CompanyEditPosition
+* 类型：POST
+* 状态码：200
+* 简介：修改过后需要再次让管理员审核||公司名不要改 但参数要传
+* 请求接口格式：
+
+```
+├─ id: String  (要修改职位的id)
+├─ TitlePosition: String  (修改后的职位名)
+├─ CompanyName: String  (公司名（不要改！但要传过来）)
+├─ Degree: String  (修改后的学历信息)
+├─ Salary: String  (修改后的薪资信息)
+├─ Welfare: String  (修改后的福利信息)
+├─ Technology: String  (修改后的技术信息)
+├─ Duty: String  (修改后的职责信息)
+├─ Region: String  (修改后的区域信息)
+└─ Number: String  (修改后的所要招聘的人数)
+
+```
+
+* 返回接口格式：
+
+```
+├─ code: Number  
+└─ msg: String  
 
 ```
