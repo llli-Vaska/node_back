@@ -1,6 +1,5 @@
 ***本文档由 Rap2 (https://github.com/thx/rap2-delos) 生成***
 
-***本项目仓库：[http://rap2.taobao.org/repository/editor?id=276416](http://rap2.taobao.org/repository/editor?id=276416) ***
 
 ***生成日期：2021-03-23 10:06:36***
 
