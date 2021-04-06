@@ -209,7 +209,16 @@ exports.positioncompanyinformation = function (CompanyName){
 //查询company + publiclecture两表相关信息
 exports.findcplall = function (){
     return Company.findAll({
-        attributes:['Icon','CompanyName'],
+        // attributes:['Icon','CompanyName'],
+        attributes: [
+            'Icon','CompanyName',
+            [sequelize.col('publiclecture.CompanyId'),'CompanyId'],
+            [sequelize.col('publiclecture.date'),'date'],
+            [sequelize.col('publiclecture.school'),'school'],
+            [sequelize.col('publiclecture.address'),'address'],
+            [sequelize.col('publiclecture.link'),'link'],
+            [sequelize.col('publiclecture.introduction'),'introduction']
+        ],
         raw:true,
         include:[{
             model: PublicLecture,

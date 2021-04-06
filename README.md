@@ -1,5 +1,6 @@
 ***本文档由 Rap2 (https://github.com/thx/rap2-delos) 生成***
 
+***本项目仓库：[http://rap2.taobao.org/repository/editor?id=276416](http://rap2.taobao.org/repository/editor?id=276416) ***
 
 ***生成日期：2021-03-23 10:06:36***
 
@@ -9,7 +10,8 @@
 * 地址：http://p373196l49.wicp.vip/company
 * 类型：POST
 * 状态码：200
-* 简介：接口描述
+* 简介：示例接口描述
+* Rap地址：[http://rap2.taobao.org/repository/editor?id=276416&mod=440030&itf=1877396](http://rap2.taobao.org/repository/editor?id=276416&mod=440030&itf=1877396)
 * 请求接口格式：
 
 ```
