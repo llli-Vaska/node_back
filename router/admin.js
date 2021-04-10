@@ -548,6 +548,17 @@ router.post('/studentoneselect',function (req,res){
     })
 
 })
+//传入企业公司登录账号返回该账号的信息
+router.post('/companyoneselect',function (req,res){
+    let UserName = req.body.UserName//获取登录账号
+    Company.Companyfind({where:{
+            UserName:UserName
+        }}).then(result => {
+        console.log(result['dataValues'])
+        res.send(result['dataValues'])
+    })
+
+})
 // student登录
 router.post('/studentlogin',function (req,res) {
     //在数据库表中查找 'number' 'password'
